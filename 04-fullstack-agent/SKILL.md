@@ -124,7 +124,8 @@ The agent—NOT the human—generates the project-level `./AGENTS.md` file by in
    > 1. Create repository `[product-name]` on GitHub.
    > 2. Run in terminal: `git remote add origin https://github.com/your-username/[product-name].git`
 4. **Minimum Environment Bootstrap**:
-   - Generate / Upgrade `./AGENTS.md`: Preserve the top **Pre-Flight Skill Router & Intent Protocol** block (from the Base `AGENTS.md` Shell), and append the comprehensive Monorepo Code Architecture, Database Schemas, Monorepo Package Paths, and Visual AI Diff Loop rules below it.
+   - Generate / Upgrade `./AGENTS.md`: Preserve the top **Pre-Flight Skill Router & Intent Protocol** block (with minimal directory-based router and `find-skills` gateway), and append the comprehensive Monorepo Code Architecture, Database Schemas, Monorepo Package Paths, and Visual AI Diff Loop rules below it.
+   - **Utility Skill Check (`find-skills`)**: Ensure `find-skills` is installed (`npx skills add vercel-labs/skills`) in `.agents/skills/find-skills` so the project has universal skill search capabilities.
    - **Root Proxy Scripts Generator**: Generate `./scripts/ui_formatter.js` and `./scripts/capture-screen.js` proxy files at workspace root forwarding calls to `.agents/skills/fullstack-agent-workflow/scripts/` so root CLI execution works seamlessly.
    - Ensure clean `.gitignore` (protecting `.env`, `.env.local`, `node_modules/`, `.expo/`, `.next/`).
    - Generate starting `.env.example` with bare minimum starting vars (`EXPO_PUBLIC_APP_NAME`, `EXPO_PUBLIC_DEV_URL`).
@@ -134,20 +135,20 @@ The agent—NOT the human—generates the project-level `./AGENTS.md` file by in
 
 ---
 
-## 🌟 Feature B: Progressive Environment & Skill Unlocking Engine (`docs/05-external-skills/`)
+## 🌟 Feature B: Progressive Environment & Selective Skill Unlocking Engine (`docs/05-external-skills/`)
 
-Environment variables and framework skills (`clerk`, `convex`, `stripe`, `supabase`, `expo-camera`) are **NEVER dumped all at once**. They are unlocked **Just-in-Time** as you progress through feature development:
+Environment variables and external framework skills (`clerk`, `convex`, `stripe`, `supabase`, `expo-camera`, `expo-router`) are **NEVER dumped all at once**. They are unlocked and installed **Just-in-Time & Selectively** as you progress through feature development:
 
-### Progressive Unlocking Protocol:
-1. **Feature-Level Assessment**: When a developer requests a feature, inspect `prompts/<task-name>.md` to identify ONLY the environment additions required for *this specific feature*.
-2. **Just-in-Time `.env` Key Prompting**: If building Auth (Step 3), prompt for Clerk/Supabase keys. If building DB (Step 4), prompt for Convex URL. If building UI screens (Step 1-2), require ZERO keys!
-3. **Just-in-Time Skill Doc Mapping**: Check `docs/05-external-skills/<library_name>.md`. Load cached docs into context or prompt the developer to add missing docs ONLY when building that specific library integration.
-4. **Checklist Update**: Cross off completed environment items in `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md` as features progress.
-2. **Local Cache Check**: Search `docs/05-external-skills/<library_name>.md`. If found, load it into context to ground code in real documentation.
-3. **On-Demand User Guidance**: If a required library doc/skill is missing:
-   - Provide CLI installation command: `npx skills add <library>/skills`
-   - Provide official documentation URLs.
-   - Offer to save any pasted documentation snippet directly into `docs/05-external-skills/<library_name>.md` for permanent future reference.
+### Progressive & Selective Unlocking Protocol:
+1. **Feature-Level Assessment**: When a task is assigned, inspect `prompts/<task-name>.md` to identify ONLY the environment keys and specific skills required for *this active task*.
+2. **Dynamic External Skill Discovery (`find-skills`)**:
+   - If a required skill is missing from `.agents/skills/`, run `find-skills` (`npx skills add vercel-labs/skills`) to search external registries (`skills.sh`, Vercel Labs, GitHub).
+3. **Selective / Lazy Skill Installation**:
+   - When an ecosystem or library suite provides multiple sub-skills (e.g. Expo skills, Supabase skills), **DO NOT install all skills at once**. Evaluate immediate task requirements and install **ONLY the single skill needed right now**, deferring additional sub-skills until future tasks explicitly require them.
+4. **Local Doc Caching**:
+   - Cache downloaded or pasted reference documentation into `docs/05-external-skills/<library_name>.md`.
+5. **Just-in-Time `.env` Key Prompting**: If building Auth (Step 3), prompt for Clerk/Supabase keys. If building DB (Step 4), prompt for Convex URL. If building UI screens (Step 1-2), require ZERO keys!
+6. **Checklist Update**: Cross off completed environment items in `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md` as features progress.
 
 ---
 
@@ -301,7 +302,10 @@ You are a principal-level software engineer building [PRODUCT_NAME], a [ONE_LINE
 Your job: understand the request, inspect relevant code, read docs/03-tech-stack/TECH-STACK.md, read named skills in docs/05-external-skills/, write a detailed implementation plan to prompts/<task-name>.md, get human approval, then implement on a feature branch.
 
 ## 1. Pre-Flight Skill Router & Executive Intent Protocol
-1. **Skill Discovery Gate**: Search `.agents/skills/` before taking action. If a Phase 0–5 skill matches, `view_file` on its `SKILL.md` first.
+1. **Minimal Directory-Based Skill Router & Discovery Gate**:
+   - **Zero-Bloat Rule**: NEVER enumerate skills one-by-one inside `AGENTS.md`. Search `.agents/skills/` (or `~/.agents/skills/`) to discover active skills.
+   - **Universal Discovery Gateway (`find-skills`)**: Use `find-skills` (`npx skills add vercel-labs/skills`) to locate external third-party skills on demand.
+   - **Selective / Lazy Skill Installation**: Install ONLY the specific sub-skill needed for the active task, deferring additional skills.
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: NEVER act as a passive order-taker in ANY phase (PRD, Stack, UI, Code, Debugging).
    - **Live Web Research (`search_web`)**: Proactively conduct web searches for live platform guidelines (Apple HIG, Material 3, WCAG 2.2 accessibility >= 44x44pt), ASO trends, framework releases, security advisories, and industry best practices.

@@ -26,11 +26,12 @@ git init
 ```
 *Initializes a fresh Git version control repository for your application.*
 
-#### Step 4: Add the workflow framework as a Git Submodule
+#### Step 4: Add the workflow framework as a Git Submodule & install skill discovery gateway
 ```bash
 git submodule add https://github.com/thenerxboy/fullstack-agent-workflow.git .agents/skills/fullstack-agent-workflow
+npx skills add vercel-labs/skills
 ```
-*Links the fullstack-agent-workflow skill suite into `.agents/skills/` as a clean submodule without cluttering your main app repository commit history.*
+*Links the fullstack-agent-workflow skill suite into `.agents/skills/` as a clean submodule and installs `find-skills` for dynamic external skill search.*
 
 ---
 

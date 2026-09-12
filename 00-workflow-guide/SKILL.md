@@ -12,14 +12,16 @@ This skill acts as the interactive onboarding sitemap and phase navigator for th
 
 ---
 
-## 🛡️ Git Submodule Pre-Flight Audit Gate
+## 🛡️ Git Submodule & Skill Pre-Flight Audit Gate
 
-Before presenting the onboarding sitemap or executing workflow commands, the agent **MUST ALWAYS check the workspace Git & Submodule status**:
+Before presenting the onboarding sitemap or executing workflow commands, the agent **MUST ALWAYS check the workspace Git, Submodule & Utility Skill status**:
 
-1. **Audit Check**: Check if current project root is a Git repository (`.git` exists) AND if `.agents/skills/fullstack-agent-workflow` is registered as a Git Submodule.
-2. **If Validated (Submodule Confirmed)**: Display status badge:
-   `✅ App Workspace Initialized | ✅ Skills Submodule Linked (.agents/skills/fullstack-agent-workflow)`
-3. **If NOT a Submodule (Warning Blueprint)**: If the workspace root is not a Git repo or if skills are cloned without submodule status, display this prominent warning before proceeding:
+1. **Submodule Check**: Check if current project root is a Git repository (`.git` exists) AND if `.agents/skills/fullstack-agent-workflow` is registered as a Git Submodule.
+2. **Utility Skill Check (`find-skills`)**: Verify if `find-skills` is installed in `.agents/skills/find-skills` or global `~/.agents/skills/find-skills`.
+   - **If Missing**: Run/instruct `npx skills add vercel-labs/skills` to install the `find-skills` discovery gateway during setup.
+3. **If Validated**: Display status badge:
+   `✅ App Workspace Initialized | ✅ Skills Submodule Linked | ✅ Skill Discovery Engine Ready (find-skills)`
+4. **If NOT a Submodule (Warning Blueprint)**: If the workspace root is not a Git repo or if skills are cloned without submodule status, display this prominent warning before proceeding:
 
 > ⚠️ **Git Submodule Pre-Flight Warning**: Your project folder is not set up with `fullstack-agent-workflow` as a Git Submodule.
 > 
@@ -31,6 +33,7 @@ Before presenting the onboarding sitemap or executing workflow commands, the age
 > ```bash
 > git init
 > git submodule add https://github.com/thenerxboy/fullstack-agent-workflow.git .agents/skills/fullstack-agent-workflow
+> npx skills add vercel-labs/skills
 > ```
 
 ---
@@ -50,9 +53,11 @@ When **`/start-workflow`** (or workspace setup) is initialized:
 
 ## 🛑 Pre-Flight Skill Router & Executive Intent Protocol
 
-1. **Skill Discovery Gate**:
-   - Before taking ANY action, search `.agents/skills/` to see if the user's prompt matches a Phase 0–5 skill (`/app-idea`, `/app-brief`, `/prd`, `tech-stack`, `/ui-theme`, `/ui-flow`, `/app-icon`, `/app-screenshots`, `/init-agents`, `fullstack-agent`).
-   - If a matching skill exists, `view_file` on that skill's `SKILL.md` first and follow its formal execution protocol. DO NOT write unguided code on your own.
+1. **Minimal Directory-Based Skill Router & Discovery Gate**:
+   - **Zero-Bloat Rule**: NEVER enumerate skills one-by-one inside `AGENTS.md`. The project skill inventory is **dynamic, open-ended, and extensible**.
+   - **Filesystem Registry**: Search `.agents/skills/` (or `~/.agents/skills/`) to discover available skills. If a matching skill directory exists, `view_file` on its `SKILL.md` first and follow its execution protocol.
+   - **Universal Discovery Gateway (`find-skills`)**: When a task requires capabilities outside the local `.agents/skills/` folder, use `find-skills` (`npx skills add vercel-labs/skills`) to search external registries (`skills.sh`, Vercel Labs, etc.).
+   - **Selective / Lazy Skill Installation**: When an ecosystem (Expo, Supabase, Tailwind, Convex) offers multiple skills, install **ONLY the specific skill needed for the active task**, deferring additional sub-skills until required.
 
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: The agent MUST NEVER act as a passive order-taker in ANY phase (Phase 0 Ideation, Phase 1 Vibe Brief, Phase 2 PRD & ASO, Phase 3 Tech Stack, Phase 4 UI/UX, Phase 5 Coding & Debugging).

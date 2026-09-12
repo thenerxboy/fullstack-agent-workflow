@@ -14,9 +14,9 @@ Universal, agent-agnostic onboarding guide, phase navigator, and master shortcut
 
 ## 🛡️ Pre-Flight Submodule Audit & Base AGENTS.md Shell Generator
 
-1. **Git Submodule Audit**: Ensures `.agents/skills/fullstack-agent-workflow` is registered as a Git Submodule so app code (`my-app.git`) stays 100% decoupled from workflow skills.
+1. **Git Submodule Audit & Utility Skill Verification**: Ensures `.agents/skills/fullstack-agent-workflow` is registered as a Git Submodule and verifies `find-skills` (`npx skills add vercel-labs/skills`) is installed as the universal external skill discovery engine.
 2. **Base `./AGENTS.md` Shell Generator**: Automatically creates a lightweight, 20-line `./AGENTS.md` shell at project root if missing, establishing:
-   - **Pre-Flight Skill Router**: Searches `.agents/skills/` before executing tasks.
+   - **Minimal Directory-Based Skill Router**: Searches `.agents/skills/` without enumerating skills line-by-line, keeping `AGENTS.md` lean. Uses `find-skills` to discover third-party skills on demand.
    - **Proactive Executive Expert Mandate**: Enforces Apple HIG, Material 3, WCAG 2.2 accessibility ($\ge 44\times44\text{pt}$ touch targets), legal compliance triad (`/privacy`, `/terms`, `/support`, account deletion), and account toggles.
    - **Informational Query vs. Execution Task Gate (`Fast-Path Answer Mandate`)**: Direct text answers for simple informational questions without planning mode or code execution loops.
    - **Surface Target Isolation Protocol**: Mobile native targets (`apps/native`) use `adb`/`xcrun`; web targets (`apps/web`) use Playwright.
@@ -26,9 +26,10 @@ Universal, agent-agnostic onboarding guide, phase navigator, and master shortcut
 
 ## 🚀 Installation & Usage (1 Command Per Line)
 
-#### Step 1: Add the workflow framework as a Git Submodule
+#### Step 1: Add the workflow framework as a Git Submodule & install skill discovery gateway
 ```bash
 git submodule add https://github.com/thenerxboy/fullstack-agent-workflow.git .agents/skills/fullstack-agent-workflow
+npx skills add vercel-labs/skills
 ```
 
 #### Step 2: Launch the interactive guide in your AI assistant
