@@ -167,6 +167,12 @@ If the user selects option `[3]` or pastes raw documentation text/links into the
 - Caches reference docs at `docs/05-external-skills/<library_name>.md`.
 - Crosses off completed items in `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md`.
 
+### 5. Universal Living `AGENTS.md` Dynamic Auto-Sync Engine
+Whenever **ANYTHING** is added or initialized in the project (whether added before or after `AGENTS.md` creation — e.g. Expo, NativeWind, Convex, Supabase, Tailwind, build scripts, test runners, or new skills):
+- The agent detects the build delta during pre-flight checks (`package.json`, `turbo.json`, `scripts/`, `.agents/skills/`, `.env.example`, `docs/`).
+- Automatically triggers a silent re-sync (`/init-agents --upgrade`) to update `AGENTS.md`, `docs/03-tech-stack/TECH-STACK.md`, and `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md`.
+- Guarantees `AGENTS.md` is a living document mirroring the true live setup of the project with zero configuration drift.
+
 ---
 
 ## 📐 Canonical Turborepo Monorepo Architecture
@@ -325,6 +331,7 @@ Your job: understand the request, inspect relevant code, read docs/03-tech-stack
    - **Ecosystem Skill Suite Ingestion (`expo/skills`)**: For frameworks like Expo, propose `npx skills add expo/skills`, inspect available sub-skills, and selectively pick only those needed for the active project.
    - **Skill-Guided Dependency Installation**: Use installed framework skills to drive dependency installation (`npx expo install nativewind react-native-reanimated`) for 100% version compatibility.
    - **Chat-Pasted Documentation Auto-Extraction Engine**: If the user pastes raw documentation or web links into chat, automatically parse and extract API guidelines into `.agents/skills/<library>/SKILL.md`.
+   - **Universal Living `AGENTS.md` Dynamic Auto-Sync Protocol**: Whenever **ANYTHING** is added to the project or workflow (packages, framework tools, build scripts, databases, environment keys, or skills — whether added before or after `AGENTS.md` creation), automatically trigger a silent re-sync (`/init-agents --upgrade`) to keep `AGENTS.md` 100% updated with zero configuration drift.
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: NEVER act as a passive order-taker in ANY phase (PRD, Stack, UI, Code, Debugging).
    - **Live Web Research (`search_web`)**: Proactively conduct web searches for live platform guidelines (Apple HIG, Material 3, WCAG 2.2 accessibility >= 44x44pt), ASO trends, framework releases, security advisories, and industry best practices.

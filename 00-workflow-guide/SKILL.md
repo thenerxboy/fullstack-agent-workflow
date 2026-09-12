@@ -59,6 +59,7 @@ When **`/start-workflow`** (or workspace setup) is initialized:
    - **Ecosystem Skill Suite Ingestion (`expo/skills`)**: For frameworks like Expo, propose `npx skills add expo/skills`, inspect available sub-skills, and selectively pick only those needed for the active project.
    - **Skill-Guided Dependency Installation**: Use installed framework skills to drive dependency installation (`npx expo install nativewind react-native-reanimated`) for 100% version compatibility.
    - **Chat-Pasted Documentation Auto-Extraction Engine**: If the user pastes raw documentation or web links into chat, automatically parse and extract API guidelines into `.agents/skills/<library>/SKILL.md`.
+   - **Universal Living `AGENTS.md` Dynamic Auto-Sync Protocol**: Whenever **ANYTHING** is added to the project or workflow (packages, framework tools, build scripts, databases, environment keys, or skills — whether added before or after `AGENTS.md` creation), automatically trigger a silent re-sync (`/init-agents --upgrade`) to keep `AGENTS.md` 100% updated with zero configuration drift.
 
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: The agent MUST NEVER act as a passive order-taker in ANY phase (Phase 0 Ideation, Phase 1 Vibe Brief, Phase 2 PRD & ASO, Phase 3 Tech Stack, Phase 4 UI/UX, Phase 5 Coding & Debugging).
