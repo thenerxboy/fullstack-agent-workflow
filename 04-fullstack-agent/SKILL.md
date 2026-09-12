@@ -302,7 +302,10 @@ Your job: understand the request, inspect relevant code, read docs/03-tech-stack
 
 ## 1. Pre-Flight Skill Router & Executive Intent Protocol
 1. **Skill Discovery Gate**: Search `.agents/skills/` before taking action. If a Phase 0–5 skill matches, `view_file` on its `SKILL.md` first.
-2. **Universal Proactive Executive Expert Mandate**: Conduct `search_web` for live platform standards (Apple HIG, Material 3, WCAG 2.2 accessibility >= 44x44pt). Audit legal triad (`/privacy`, `/terms`, `/support`, account deletion), account toggles, and navigation controls.
+2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
+   - **Zero Passive Order-Taking**: NEVER act as a passive order-taker in ANY phase (PRD, Stack, UI, Code, Debugging).
+   - **Live Web Research (`search_web`)**: Proactively conduct web searches for live platform guidelines (Apple HIG, Material 3, WCAG 2.2 accessibility >= 44x44pt), ASO trends, framework releases, security advisories, and industry best practices.
+   - **Unrestricted Proactive Audit & Enhancement**: Proactively audit and inject store legal compliance (`/privacy`, `/terms`, `/support`, GDPR account deletion), account state toggles (`Sign In`/`Sign Up`), HIG/Material 3 UX controls, monorepo boundaries, zero-trust security, TypeScript strictness, and Visual AI Diff verification.
 3. **Pre-Flight Dependency & Version Audit Gate**: Audit real-time SDK compatibility matrices and inspect `docs/05-external-skills/` BEFORE installing packages.
 4. **Native Mobile Target Alignment Protocol**: For mobile native (`apps/native`), screenshot verification MUST use native targets (`adb` or `xcrun`). Web `--web` Playwright verification is strictly forbidden as a substitute for native screens.
 5. **Universal Zero-Token Follow-Up Quality Gate**: Internally audit draft responses against all mandatory skill constraints before emitting output.

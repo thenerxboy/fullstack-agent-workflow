@@ -54,14 +54,14 @@ When **`/start-workflow`** (or workspace setup) is initialized:
    - Before taking ANY action, search `.agents/skills/` to see if the user's prompt matches a Phase 0–5 skill (`/app-idea`, `/app-brief`, `/prd`, `tech-stack`, `/ui-theme`, `/ui-flow`, `/app-icon`, `/app-screenshots`, `/init-agents`, `fullstack-agent`).
    - If a matching skill exists, `view_file` on that skill's `SKILL.md` first and follow its formal execution protocol. DO NOT write unguided code on your own.
 
-2. **Universal Proactive Executive Expert Mandate (ALL Domains & Screens)**:
-   - DO NOT act as a passive order-taker in ANY phase (PRD, Stack, UI, or Code).
-   - Proactively conduct web searches (`search_web`) for current live platform standards (Apple HIG, Android Material 3, WCAG 2.2 accessibility).
-   - Proactively audit and inject universal UX, legal, and navigation controls:
-     * **Legal & Store Compliance**: Mandatory `Privacy Policy`, `Terms of Service`, `Restore Purchases`, and self-serve `Account Deletion` (Apple Guideline 5.1.1 & GDPR).
-     * **Account Toggles**: `[ Already have an account? Log In ]` / `[ New here? Sign Up ]` on all welcome & auth flows.
-     * **Touch Targets & Accessibility**: Minimum 44x44pt touch targets on all buttons, chips, and icon taps.
-     * **Universal UX Controls**: Top `[ ← Back ]` & `[ Skip ]` on carousels, exit `[ × ]` on paywalls/modals, skeleton loaders & pull-to-refresh on feeds, grouped cards & red destructive styling on settings/profiles, floating labels & error rings on forms.
+2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
+   - **Zero Passive Order-Taking**: The agent MUST NEVER act as a passive order-taker in ANY phase (Phase 0 Ideation, Phase 1 Vibe Brief, Phase 2 PRD & ASO, Phase 3 Tech Stack, Phase 4 UI/UX, Phase 5 Coding & Debugging).
+   - **Live Web Research (`search_web`)**: Proactively conduct live web searches for current live standards, platform guidelines (Apple HIG, Android Material 3, WCAG 2.2 accessibility), market trends, ASO keyword algorithms, framework releases, security advisories, and industry best practices BEFORE proposing or writing specs, UI, or code.
+   - **Unrestricted Proactive Audit & Enhancement Across All Domains**:
+     * **Product Strategy & ASO (Phases 0–2)**: Proactively audit market friction, competitor gaps, ASO search volume, conversion funnels, retention loops, and store compliance (Apple Guideline 5.1.1, GDPR Article 17 self-serve account deletion, legal triad `/privacy`, `/terms`, `/support`).
+     * **Tech Stack & Monorepo Architecture (Phase 3)**: Proactively audit real-time SDK compatibility matrices, package deprecations, database indexing, zero-trust server/client boundaries, and monorepo layer boundaries.
+     * **UI/UX & Design Systems (Phase 4)**: Proactively audit and inject Apple HIG & Material 3 ergonomics ($\ge 44\times44\text{pt}$ touch targets), account state toggles (`Sign In` / `Sign Up`), universal navigation controls (top `[ ← Back ]` & `[ Skip ]` on carousels, exit `[ × ]` on paywalls/modals), skeleton loaders & pull-to-refresh on feeds, grouped cards & red destructive styling on settings, floating labels & error rings on forms.
+     * **Code Engineering & Debugging (Phase 5)**: Proactively audit TypeScript strictness (zero `any`), defensive null-checks, error boundary wrappers, accessibility props (`accessibilityLabel`), clean Git feature branch PR workflows, and Visual AI Diff verification.
 
 3. **Pre-Flight Dependency & External Skill Audit**:
    - Audit real-time SDK compatibility matrices (e.g. Expo SDK matching user's active mobile device) and search `docs/05-external-skills/<library>.md` BEFORE installing packages or writing integration code. Prompt the user for missing skills/docs first.

@@ -51,7 +51,7 @@ Agents MUST search for input context files and write output artifacts using this
 
 ## 🛡️ Pre-Flight Dependency & Version Audit Gate
 Before locking any framework or package dependency (Expo SDK, React Native, Convex, Clerk, Supabase, NativeWind):
-1. **Universal Proactive Tech Stack Audit**: DO NOT act as a passive order-taker. Proactively conduct web searches (`search_web`) for current live framework releases, package deprecation notices, security vulnerabilities, monorepo performance bottlenecks, and database indexing best practices.
+1. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Tech Stack Proactivity)**: DO NOT act as a passive order-taker in Phase 3. Proactively conduct live web searches (`search_web`) for current framework releases, SDK compatibility matrices (e.g. matching Expo SDK to user's mobile device), package deprecations, security advisories, database indexing best practices, and monorepo layer boundaries BEFORE writing package specs.
 2. **Real-Time Compatibility Audit**: Audit actual runtime SDK version compatibility (e.g. checking live Expo SDK matching user's mobile device) and search `docs/05-external-skills/` for cached documentation.
 3. **Just-in-Time Skill Mapping**: Ensure all required external framework skills/docs are mapped in `docs/05-external-skills/` before generating package installation instructions.
 4. **Universal Zero-Token Follow-Up Quality Gate**: On EVERY follow-up generation turn, internally audit draft responses against Turborepo layer boundaries, DB client schemas, and package rules before emitting output.
