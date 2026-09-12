@@ -53,11 +53,12 @@ When **`/start-workflow`** (or workspace setup) is initialized:
 
 ## 🛑 Pre-Flight Skill Router & Executive Intent Protocol
 
-1. **Minimal Directory-Based Skill Router & Discovery Gate**:
-   - **Zero-Bloat Rule**: NEVER enumerate skills one-by-one inside `AGENTS.md`. The project skill inventory is **dynamic, open-ended, and extensible**.
-   - **Filesystem Registry**: Search `.agents/skills/` (or `~/.agents/skills/`) to discover available skills. If a matching skill directory exists, `view_file` on its `SKILL.md` first and follow its execution protocol.
-   - **Universal Discovery Gateway (`find-skills`)**: When a task requires capabilities outside the local `.agents/skills/` folder, use `find-skills` (`npx skills add vercel-labs/skills`) to search external registries (`skills.sh`, Vercel Labs, etc.).
-   - **Selective / Lazy Skill Installation**: When an ecosystem (Expo, Supabase, Tailwind, Convex) offers multiple skills, install **ONLY the specific skill needed for the active task**, deferring additional sub-skills until required.
+1. **Minimal Directory-Based Skill Router & Batched Approval Gate**:
+   - **Zero-Bloat Rule**: NEVER enumerate skills one-by-one inside `AGENTS.md`. Search `.agents/skills/` (or `~/.agents/skills/`) to discover active skills.
+   - **Batched Skill Proposal & User Approval Gate**: Group all external skills required for an upcoming feature into a single batched menu (Skill Name, Source, Purpose, User Choice Options) before installing.
+   - **Ecosystem Skill Suite Ingestion (`expo/skills`)**: For frameworks like Expo, propose `npx skills add expo/skills`, inspect available sub-skills, and selectively pick only those needed for the active project.
+   - **Skill-Guided Dependency Installation**: Use installed framework skills to drive dependency installation (`npx expo install nativewind react-native-reanimated`) for 100% version compatibility.
+   - **Chat-Pasted Documentation Auto-Extraction Engine**: If the user pastes raw documentation or web links into chat, automatically parse and extract API guidelines into `.agents/skills/<library>/SKILL.md`.
 
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: The agent MUST NEVER act as a passive order-taker in ANY phase (Phase 0 Ideation, Phase 1 Vibe Brief, Phase 2 PRD & ASO, Phase 3 Tech Stack, Phase 4 UI/UX, Phase 5 Coding & Debugging).

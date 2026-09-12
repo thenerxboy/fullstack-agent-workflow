@@ -135,20 +135,37 @@ The agent—NOT the human—generates the project-level `./AGENTS.md` file by in
 
 ---
 
-## 🌟 Feature B: Progressive Environment & Selective Skill Unlocking Engine (`docs/05-external-skills/`)
+## 🌟 Feature B: Progressive Environment, Ecosystem Suites (`expo/skills`), & Chat-Doc Extraction Engine (`docs/05-external-skills/`)
 
-Environment variables and external framework skills (`clerk`, `convex`, `stripe`, `supabase`, `expo-camera`, `expo-router`) are **NEVER dumped all at once**. They are unlocked and installed **Just-in-Time & Selectively** as you progress through feature development:
+Environment variables and external framework skills (`clerk`, `convex`, `stripe`, `supabase`, `expo-camera`, `expo-router`) are **NEVER dumped all at once**. They are unlocked, proposed, and installed **Just-in-Time, Selectively, and with Explicit Batched Human Approval**:
 
-### Progressive & Selective Unlocking Protocol:
-1. **Feature-Level Assessment**: When a task is assigned, inspect `prompts/<task-name>.md` to identify ONLY the environment keys and specific skills required for *this active task*.
-2. **Dynamic External Skill Discovery (`find-skills`)**:
-   - If a required skill is missing from `.agents/skills/`, run `find-skills` (`npx skills add vercel-labs/skills`) to search external registries (`skills.sh`, Vercel Labs, GitHub).
-3. **Selective / Lazy Skill Installation**:
-   - When an ecosystem or library suite provides multiple sub-skills (e.g. Expo skills, Supabase skills), **DO NOT install all skills at once**. Evaluate immediate task requirements and install **ONLY the single skill needed right now**, deferring additional sub-skills until future tasks explicitly require them.
-4. **Local Doc Caching**:
-   - Cache downloaded or pasted reference documentation into `docs/05-external-skills/<library_name>.md`.
-5. **Just-in-Time `.env` Key Prompting**: If building Auth (Step 3), prompt for Clerk/Supabase keys. If building DB (Step 4), prompt for Convex URL. If building UI screens (Step 1-2), require ZERO keys!
-6. **Checklist Update**: Cross off completed environment items in `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md` as features progress.
+### 1. Interactive Batch Skill Proposal & User Approval Gate
+Before running `npx skills add ...` or installing external skills, the agent **MUST ALWAYS present a single Batched Skill Proposal** in chat detailing all skills required for the upcoming feature/milestone:
+
+For each skill in the batch proposal, the agent presents:
+- **Skill Name & Registry Source**: (e.g. `expo-router` from `https://skills.sh/expo/skills` or `vercel-labs/skills`).
+- **Purpose & Justification**: Exact feature/task requiring this skill (e.g. *"Setting up Expo Router tab navigation in `apps/native`"*).
+- **Discovery Status**: Indicates if the skill was found online via `find-skills` or requires user guidance/chat-pasted docs.
+- **Batched User Choice Options**:
+  * **`[1] Approve & Auto-Install Batch`**: Agent executes CLI commands (`npx skills add expo/skills`) automatically.
+  * **`[2] Manual Terminal Install`**: Displays exact terminal commands for the user to run manually.
+  * **`[3] Paste Raw Docs in Chat`**: User pastes documentation text or web links directly in chat for auto-extraction.
+
+### 2. Ecosystem Skill Suite Ingestion (`expo/skills`) & Selective Sub-Skill Picking
+When setting up a framework suite (e.g. **Expo**):
+- The agent proposes `npx skills add expo/skills` (pulling from `skills.sh/expo/skills`).
+- The agent inspects `expo/skills` and **selectively picks ONLY the sub-skills required for this project** (e.g. `expo-router`, `nativewind`, `reanimated`), presenting them in the batched proposal menu.
+
+### 3. Skill-Guided Dependency Installation (`npx expo install ...`)
+Once the user approves the proposed skills:
+- The agent **MUST use the installed Expo skills to guide dependency installation** (e.g. executing `npx expo install nativewind react-native-reanimated` according to official Expo skill rules) so package versions match perfectly without peer-dependency errors.
+
+### 4. Chat-Pasted Documentation Auto-Extraction Engine
+If the user selects option `[3]` or pastes raw documentation text/links into the chat:
+- The agent parses the pasted text, extracts API rules, docstrings, code patterns, and constraints.
+- Automatically compiles and saves a structured skill file at `.agents/skills/<library_name>/SKILL.md`.
+- Caches reference docs at `docs/05-external-skills/<library_name>.md`.
+- Crosses off completed items in `docs/00-workflow-guide/ENVIRONMENT-CHECKLIST.md`.
 
 ---
 
@@ -302,10 +319,12 @@ You are a principal-level software engineer building [PRODUCT_NAME], a [ONE_LINE
 Your job: understand the request, inspect relevant code, read docs/03-tech-stack/TECH-STACK.md, read named skills in docs/05-external-skills/, write a detailed implementation plan to prompts/<task-name>.md, get human approval, then implement on a feature branch.
 
 ## 1. Pre-Flight Skill Router & Executive Intent Protocol
-1. **Minimal Directory-Based Skill Router & Discovery Gate**:
+1. **Minimal Directory-Based Skill Router & Batched Approval Gate**:
    - **Zero-Bloat Rule**: NEVER enumerate skills one-by-one inside `AGENTS.md`. Search `.agents/skills/` (or `~/.agents/skills/`) to discover active skills.
-   - **Universal Discovery Gateway (`find-skills`)**: Use `find-skills` (`npx skills add vercel-labs/skills`) to locate external third-party skills on demand.
-   - **Selective / Lazy Skill Installation**: Install ONLY the specific sub-skill needed for the active task, deferring additional skills.
+   - **Batched Skill Proposal & User Approval Gate**: Group all external skills required for an upcoming feature into a single batched menu (Skill Name, Source, Purpose, User Choice Options) before installing.
+   - **Ecosystem Skill Suite Ingestion (`expo/skills`)**: For frameworks like Expo, propose `npx skills add expo/skills`, inspect available sub-skills, and selectively pick only those needed for the active project.
+   - **Skill-Guided Dependency Installation**: Use installed framework skills to drive dependency installation (`npx expo install nativewind react-native-reanimated`) for 100% version compatibility.
+   - **Chat-Pasted Documentation Auto-Extraction Engine**: If the user pastes raw documentation or web links into chat, automatically parse and extract API guidelines into `.agents/skills/<library>/SKILL.md`.
 2. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Across ALL Phases & Disciplines)**:
    - **Zero Passive Order-Taking**: NEVER act as a passive order-taker in ANY phase (PRD, Stack, UI, Code, Debugging).
    - **Live Web Research (`search_web`)**: Proactively conduct web searches for live platform guidelines (Apple HIG, Material 3, WCAG 2.2 accessibility >= 44x44pt), ASO trends, framework releases, security advisories, and industry best practices.
