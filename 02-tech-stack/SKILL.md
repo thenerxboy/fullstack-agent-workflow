@@ -66,7 +66,7 @@ Whenever the agent evaluates or proposes a tech stack (even when `ARCH-PRD.md` a
 
 ## 🛡️ Pre-Flight Dependency & Version Audit Gate
 Before locking any framework or package dependency (Expo SDK, Next.js, Convex, Clerk, Supabase, NativeWind):
-1. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Tech Stack Proactivity)**: DO NOT act as a passive order-taker in Phase 3. Proactively conduct live web searches (`search_web`) for current framework releases, SDK compatibility matrices (e.g. matching Expo SDK to user's mobile device), package deprecations, security advisories, database indexing best practices, and monorepo layer boundaries BEFORE writing package specs.
+1. **Universal Proactive Executive Expert Mandate (UNRESTRICTED Tech Stack Proactivity)**: NEVER act as a passive order-taker in Phase 3. Proactively conduct live web searches (`search_web`) for current framework releases, SDK compatibility matrices, package deprecations, security advisories, database indexing best practices, and layer boundaries BEFORE writing package specs.
 2. **Real-Time Compatibility Audit**: Audit actual runtime SDK version compatibility and search `docs/05-external-skills/` for cached documentation.
 3. **Just-in-Time Skill Mapping**: Ensure all required external framework skills/docs are mapped in `docs/05-external-skills/` before generating package installation instructions.
 4. **Universal Zero-Token Follow-Up Quality Gate**: On EVERY follow-up generation turn, internally audit draft responses against layer boundaries, DB client schemas, and package rules before emitting output.

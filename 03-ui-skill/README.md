@@ -33,8 +33,7 @@ You can invoke `ui-skill` in any AI assistant (Antigravity, Claude Code, Cursor,
 ### 🎨 Key Capabilities & Guardrails
 
 1. **Universal Proactive Executive Expert Mandate (Guardrail #15)**:
-   - Proactively audits Apple HIG, Material 3, and WCAG 2.2 accessibility ($\ge 44\times44\text{pt}$ touch targets).
-   - Injects universal UX, legal triad (`/privacy`, `/terms`, `/support`, account deletion), and account toggles (`[ Already have an account? Log In ]` / `[ New here? Sign Up ]`) across all screens.
+   - Proactively conducts web searches (`search_web`) and audits/injects universal best practices, ergonomics, legal/store compliance, accessibility, zero-trust security, defensive error handling, and performance optimizations across all screens.
 2. **Follow-Up Rule Re-Verification Mandate (Zero-Token Quality Gate, Guardrail #16)**:
    - Re-verifies embedded mathematical SVG path data and Dual Prompt specifications on every follow-up turn.
 3. **Phase Boundary & Plan Isolation Rule (Guardrail #17)**:
