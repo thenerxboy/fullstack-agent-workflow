@@ -342,12 +342,13 @@ Your job: understand the request, inspect relevant code, read docs/03-tech-stack
 6. **Interactive Learning Clarification Mandate**: For multi-engine or underspecified requests, STOP & ASK using an Interactive Learning Menu showing exact shortcut commands.
 7. **Informational Query vs. Execution Task Gate (Fast-Path Answer Mandate)**:
    - For simple informational or diagnostic questions (*"Can you access my emulator?"*, *"How does X work?"*): DO NOT launch planning mode, write implementation plans, or run heavy code loops. Immediately answer directly in concise text (1–2 paragraphs). Run a 1-liner status check (`adb devices`) ONLY if explicitly asked.
-8. **Architecture Decision Ingestion & Monorepo Inspection Gate**:
-   - The workspace architecture model (Turborepo Monorepo vs Standalone Flat App) is determined during **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+8. **Architecture Decision Ingestion & 4 Universal Target Profiles Gate**:
+   - The workspace architecture model (Profile 1: Standalone Mobile, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+   - **Non-Technical Chat Briefing**: Before scaffolding code, the agent MUST present a simple 3-part chat briefing explaining the target profile, free resources used (Vercel, Convex, Supabase, Clerk, Tailwind), and 1-liner run commands (`npm run dev` or `npx expo start`). Zero `AGENTS.md` bloat.
    - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/ARCH-PRD.md` and `docs/03-tech-stack/TECH-STACK.md`**:
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Turborepo Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`).
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone Flat App**, the agent builds a flat app layout.
-     * If unspecified in `docs/`, the agent defaults to the 5-layer Turborepo Monorepo standard.
+     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
+     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
+     * If unspecified in `docs/`, the agent presents the Non-Technical Interactive Architecture Discovery Menu in chat to let the user pick their target profile.
 
 ## 2. Execution Workflow (Phase 5 Build)
 1. Read `AGENTS.md`, `docs/03-tech-stack/TECH-STACK.md`, and relevant skills first before writing code.

@@ -85,12 +85,13 @@ When **`/start-workflow`** (or workspace setup) is initialized:
      b) **FAST-PATH ANSWER**: Answer directly in 1–2 concise text paragraphs explaining capabilities, requirements, and exact CLI commands.
      c) **SINGLE-COMMAND CHECK (ONLY IF EXPLICITLY REQUESTED)**: If the user explicitly requests a status check (e.g. *"Check if my emulator is active right now"*), run **only a single 1-liner status command** (e.g. `adb devices` or `xcrun simctl list`) and return the output immediately.
 
-8. **Architecture Decision Ingestion & Monorepo Inspection Gate**:
-   - The workspace architecture model (Turborepo Monorepo vs Standalone Flat App) is determined during **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+8. **Architecture Decision Ingestion & 4 Universal Target Profiles Gate**:
+   - The workspace architecture model (Profile 1: Standalone Mobile App, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+   - **Non-Technical Chat Briefing**: Before scaffolding code, the agent MUST present a simple 3-part chat briefing explaining the target profile, free resources used (Vercel, Convex, Supabase, Clerk, Tailwind), and 1-liner run commands (`npm run dev` or `npx expo start`). Zero `AGENTS.md` bloat.
    - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/ARCH-PRD.md` and `docs/03-tech-stack/TECH-STACK.md`**:
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Turborepo Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`).
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone Flat App**, the agent builds a flat app layout.
-     * If unspecified in `docs/`, the agent defaults to the 5-layer Turborepo Monorepo standard.
+     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
+     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
+     * If unspecified in `docs/`, the agent presents the Non-Technical Interactive Architecture Discovery Menu in chat to let the user pick their target profile.
 ```
 
 ---

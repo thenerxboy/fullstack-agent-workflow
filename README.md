@@ -1,6 +1,6 @@
 # 🚀 `fullstack-agent-workflow`
 
-Universal, Enterprise-Grade 5-Phase AI Agent Workflow for Building Multi-Surface Applications across Expo (React Native) and Next.js (App Router) inside a Turborepo Monorepo.
+Universal, Enterprise-Grade 5-Phase AI Agent Workflow for Building Applications across 4 Target Profiles: Standalone Mobile Apps (Expo), Standalone Web Apps (Next.js), Standalone Landing Pages (Next.js), and Full-Stack Monorepos (Expo + Next.js + Shared Packages).
 
 ---
 
