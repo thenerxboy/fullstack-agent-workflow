@@ -50,13 +50,12 @@ Agents MUST search for and output documents using this prioritized path resoluti
 - **Visual Token Hand-off Protocol**: Leave precise HEX color choices and Google Fonts pairing selections to Stage 4 (`ui-skill`), allowing Phase 1 & Phase 2 to focus 100% on product strategy, UX flows, copy, and features.
 - **Proactive Feature Proposal Engine**: Proactively pitch a 3-category feature menu (Essential Core Loop, Modern Delighters, Signature Differentiators).
 - **Phase Boundary & Plan Isolation Rule**: Plan creation (`prompts/*.md`) and git commit proposals are STRICTLY RESTRICTED to Phase 5 Build (`fullstack-agent`). Phase 0, 1, and 2 skills MUST NOT generate `prompts/*.md` implementation plans or trigger code execution.
-- **Mandatory Turborepo Monorepo Default Architecture**: Unless the user EXPLICITLY states otherwise (e.g. *"build a single-folder standalone web app"*), ALL PRD specifications MUST target a 5-layer Turborepo Monorepo structure by default:
-  * `apps/native`: Expo Router mobile app (iOS & Android)
-  * `apps/web`: Next.js App Router (Marketing landing page, legal compliance hub, operator dashboard)
-  * `packages/ui`: Shared design tokens & cross-platform primitives
-  * `packages/db`: Backend client, schemas & queries (Convex, Supabase, or InsForge)
-  * `packages/auth`: Cross-platform authentication session helpers (Clerk or Supabase Auth)
-- **Store Compliance & Mandatory Web Legal Triad by Default**: Dedicated `apps/web/app/(legal)` hosting `/privacy`, `/terms`, `/support` & Apple Guideline 5.1.1(v) + GDPR Article 17 self-serve account deletion.
+- **4 Universal Target Profiles & Non-Technical Architecture Discovery Gate**: PRD specifications target one of 4 first-class app profiles (Standalone Mobile App, Standalone Web App, Standalone Landing Page, or Full-Stack Monorepo). If the target profile is unspecified in PRD research, the agent MUST present the Non-Technical Interactive Architecture Discovery Menu in chat to let the user choose transparently without blind assumptions:
+  * **Profile 1: Standalone Mobile App** (`apps/native` or flat `./`): Expo Router mobile app (iOS & Android) with NativeWind/Tailwind styling.
+  * **Profile 2: Standalone Web App** (`./`): Next.js App Router, Tailwind CSS, free DB (Convex/Supabase), Clerk Auth.
+  * **Profile 3: Standalone Landing Page** (`./`): Next.js App Router marketing page, free Vercel hosting.
+  * **Profile 4: Full-Stack Monorepo** (`apps/native` + `apps/web` + `packages/`): Expo Mobile + Next.js Web + Shared Packages.
+- **Store Compliance & Mandatory Web Legal Triad by Default**: Dedicated `apps/web/app/(legal)` or `./app/(legal)` hosting `/privacy`, `/terms`, `/support` & Apple Guideline 5.1.1(v) + GDPR Article 17 self-serve account deletion.
 
 ---
 

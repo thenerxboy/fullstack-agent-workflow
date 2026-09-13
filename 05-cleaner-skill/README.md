@@ -14,7 +14,7 @@ Universal, agent-agnostic AI workspace cleanup skill designed to safely audit an
 
 ## 🛡️ Strict Safety Protocol & Protected Exclusion List
 
-- **100% Protected Never-Touch List**: Application source code (`apps/`, `packages/`), database schemas, environment keys (`.env*`), configuration files (`package.json`, `turbo.json`), authoritative docs (`docs/`), active UI prompts (`app-screens/prompts/`), and design tokens (`app_theme.json`, `design_catalog.json`).
+- **100% Protected Never-Touch List**: Application source code (`apps/`, `packages/`), database schemas, environment keys (`.env*`), configuration files (`package.json`, `turbo.json`), memory files (`MEMORY.md`, `AGENTS.md`), authoritative docs (`docs/`), active UI prompts (`app-screens/prompts/`), and design tokens (`app_theme.json`, `design_catalog.json`).
 - **Interactive Dry-Run Approval Gate**: Mandatory 2-step process (Scan & Audit Proposal Table $\rightarrow$ Wait for explicit user "yes" approval before deleting anything).
 
 ---
