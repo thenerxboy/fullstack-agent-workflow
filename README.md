@@ -84,7 +84,7 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
                                          ▼
 +-----------------------------------------------------------------------------------+
 | Phase 2: Product Strategy, ASO & System PRD Architecture (/prd)                    |
-| Outputs: docs/02-prd-research/ARCH-PRD.md & aso_keywords.json                    |
+| Outputs: docs/02-prd-research/SYSTEM-PRD.md & aso_keywords.json                   |
 +-----------------------------------------------------------------------------------+
                                          │
                                          ▼
@@ -121,7 +121,7 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
 | **Onboarding** | **`/start-workflow`** | Runs Submodule Pre-Flight Audit Gate, Base `./AGENTS.md` Shell generator & interactive sitemap. | Interactive Guide |
 | **Phase 0** | **`/project-idea`** *(alias: `/app-idea`)* | Researches market trends, competitor gaps, YouTube transcripts, and pitches 20 data-backed app ideas. | 20 App Ideas Table |
 | **Phase 1** | **`/project-brief`** *(alias: `/app-brief`)* | Creative vibe jamming for brand identity, mascot quirks, sensory personality, and copy tone. | `docs/01-project-brief/PROJECT-BRIEF.md` |
-| **Phase 2** | **`/prd`** | Executes 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope. | `docs/02-prd-research/ARCH-PRD.md` |
+| **Phase 2** | **`/prd`** | Executes 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope. | `docs/02-prd-research/SYSTEM-PRD.md` |
 | **Phase 3** | **`tech-stack`** | Feature-first stack decomposition across 8 Turborepo monorepo layers and DB client schemas. | `docs/03-tech-stack/TECH-STACK.md` |
 | **Phase 4** | **`/ui-theme`** | Ingests PRD & Project Brief, locks 2-3 color palettes and Google Fonts pairings, audits visual assets in `./app_theme.json`. | **Design System Token Lock** |
 | **Phase 4** | **`/ui-flow`** | Enforces Component-First sequence (`/ui-theme` token lock -> Stage 3 Auth -> Stage 4 Paywall -> Stage 5 Core Screens) and compiles UI screen prompt blueprints. | **Generative UI Screen Prompts** |

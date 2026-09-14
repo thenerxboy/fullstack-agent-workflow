@@ -16,7 +16,7 @@ Agents MUST search for input context files and write output artifacts using this
 | Document / Asset | Primary Input / Output Path | Fallback Path 1 | Fallback Path 2 |
 | :--- | :--- | :--- | :--- |
 | **Ingested Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
-| **Ingested System PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
+| **Ingested System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
 | **Output Artifact 1 (Features)** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
 | **Output Artifact 2 (Tech Stack)** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 
@@ -54,7 +54,7 @@ Agents MUST search for input context files and write output artifacts using this
 
 ## 💡 Non-Technical Interactive Stack Explanation Engine (Chat Output — Zero `AGENTS.md` Bloat)
 
-Whenever the agent evaluates or proposes a tech stack (even when `ARCH-PRD.md` and `TECH-STACK.md` are present), it **MUST present a beginner-friendly 3-part chat briefing**:
+Whenever the agent evaluates or proposes a tech stack (even when `SYSTEM-PRD.md` / `ARCH-PRD.md` and `TECH-STACK.md` are present), it **MUST present a beginner-friendly 3-part chat briefing**:
 
 1. **What We Are Building**: Plain-English explanation of the selected Target Profile (e.g. *"Standalone Next.js Web App"* or *"Expo Mobile App"*).
 2. **Free Resources Used**: Transparent list of free-tier services used (Vercel free hosting, Convex free tier, Supabase free tier, Clerk free tier, Tailwind CSS).

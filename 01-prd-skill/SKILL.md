@@ -1,6 +1,6 @@
 ---
 name: prd-skill
-description: Universal AI agent skill for market research, 20-app-idea generation, creative vibe brief drafting, ASO keyword research, competitor audits, and 15-section system PRD architecture into docs/01-app-brief/APP-BRIEF.md and docs/02-prd-research/ARCH-PRD.md.
+description: Universal AI agent skill for market research, 20-project-idea generation, creative vibe brief drafting, ASO keyword research, competitor audits, and 15-section system PRD architecture into docs/01-project-brief/PROJECT-BRIEF.md and docs/02-prd-research/SYSTEM-PRD.md.
 ---
 
 # 🚀 Product Ideation & PRD Architecture Skill (`prd-skill`)
@@ -8,7 +8,7 @@ description: Universal AI agent skill for market research, 20-app-idea generatio
 Universal, agent-agnostic AI skill that guides developers through a complete 3-phase product creation journey:
 1. **Phase 0: Market Research & 20 Project Ideas Pitch** (`/project-idea` or `/app-idea`)
 2. **Phase 1: Creative Vibe Jamming & Brand Positioning** (`/project-brief` or `/app-brief`) ──> Outputs `docs/01-project-brief/PROJECT-BRIEF.md`
-3. **Phase 2: Product Strategy, ASO & System PRD Architecture** (`/prd`) ──> Outputs `docs/02-prd-research/ARCH-PRD.md` & `aso_keywords.json`
+3. **Phase 2: Product Strategy, ASO & System PRD Architecture** (`/prd`) ──> Outputs `docs/02-prd-research/SYSTEM-PRD.md` & `aso_keywords.json`
 
 ---
 
@@ -19,7 +19,7 @@ Agents MUST search for and output documents using this prioritized path resoluti
 | Document / Asset | Primary Master Target Path | Fallback Path 1 (Legacy) | Fallback Path 2 |
 | :--- | :--- | :--- | :--- |
 | **Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `./PROJECT-BRIEF.md` |
-| **System ARCH-PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
+| **System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
 | **ASO Keywords JSON** | `docs/02-prd-research/aso_keywords.json` | `docs/aso_keywords.json` | `./aso_keywords.json` |
 
 ---
@@ -28,11 +28,11 @@ Agents MUST search for and output documents using this prioritized path resoluti
 
 | Command / Shortcut | Alias Flags | Action / Behavior |
 | :--- | :--- | :--- |
-| **`/prd-skill-help`** | `/prd-skill --help`, `/prd-help` | Displays complete manual & guide for Phase 0 (Ideas), Phase 1 (Project Brief), and Phase 2 (ARCH-PRD). |
+| **`/prd-skill-help`** | `/prd-skill --help`, `/prd-help` | Displays complete manual & guide for Phase 0 (Ideas), Phase 1 (Project Brief), and Phase 2 (SYSTEM-PRD). |
 | **`/prd-skill-shortcuts`** | `/prd-skill --shortcuts` | Fast cheat-sheet list of all PRD skill shortcuts. |
 | **`/project-idea`** | `/app-idea`, `/idea` | Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches 20 data-backed project ideas). |
 | **`/project-brief`** | `/app-brief`, `/brief`, `/vibe-brief` | Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and `PROJECT-BRIEF.md`). |
-| **`/prd`** | N/A | Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes 8-question discovery loop, and generates `ARCH-PRD.md`). |
+| **`/prd`** | N/A | Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes 8-question discovery loop, and generates `SYSTEM-PRD.md`). |
 
 ---
 
@@ -87,11 +87,11 @@ Ask ONE question at a time (ASO Name & Web Model, JTBD & Features, Auth & Onboar
 
 #### Step 2: Synthesis & File Generation
 1. Confirm surface model and feature scope.
-2. Write complete 15-Section PRD to `docs/02-prd-research/ARCH-PRD.md` (fallback `docs/ARCH-PRD.md`) and output `aso_keywords.json`.
+2. Write complete 15-Section PRD to `docs/02-prd-research/SYSTEM-PRD.md` (fallback `docs/02-prd-research/ARCH-PRD.md`) and output `aso_keywords.json`.
 3. Completion Handoff to Stage 3 (`tech-stack`) or Stage 4 (`ui-skill`).
 
 ---
 
 ## 🚫 Zero Memory Logging Mandate
 - The agent MUST NOT update or touch `./MEMORY.md` during Phase 0, Phase 1, or Phase 2.
-- `APP-BRIEF.md` and `ARCH-PRD.md` inside `docs/` serve as the complete, self-contained documentation assets.
+- `PROJECT-BRIEF.md` (or `APP-BRIEF.md`) and `SYSTEM-PRD.md` (or `ARCH-PRD.md`) inside `docs/` serve as the complete, self-contained documentation assets.

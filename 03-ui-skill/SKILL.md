@@ -19,7 +19,7 @@ Agents MUST search for input context files and write output artifacts using this
 | Document / Asset | Primary Target Path | Fallback Path 1 | Fallback Path 2 |
 | :--- | :--- | :--- | :--- |
 | **Ingested Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
-| **Ingested System PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
+| **Ingested System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
 | **Ingested Features Map** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
 | **Ingested Tech Stack** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 | **UI Design Memory Log** | `docs/04-ui-design/DESIGN-MEMORY.md` | `docs/DESIGN-MEMORY.md` | `./DESIGN-MEMORY.md` |
@@ -43,7 +43,7 @@ When running prompt compilation scripts, the script dynamically evaluates candid
 | :--- | :--- | :--- |
 | **`/ui-help`** | `/ui-skill --help`, `/ui-help` | Displays complete manual overview: what the skill does, file schemas (`app_theme.json`, `design_catalog.json`), phases, and rules. |
 | **`/ui-shortcuts`** | `/ui-skill --shortcuts`, `/ui-shortcuts` | Displays fast reference list of all available UI shortcut triggers and what they do. |
-| **`/ui-theme`** | Ingests `APP-BRIEF.md` & `ARCH-PRD.md`, proposes 2–3 Color Palettes and Google Fonts pairings, audits required visual assets (mascot/logo/SVGs), and locks `./app_theme.json`. | **Design System Token Lock** |
+| **`/ui-theme`** | Ingests `PROJECT-BRIEF.md` (or `APP-BRIEF.md`) & `SYSTEM-PRD.md` (or `ARCH-PRD.md`), proposes 2–3 Color Palettes and Google Fonts pairings, audits required visual assets (mascot/logo/SVGs), and locks `./app_theme.json`. | **Design System Token Lock** |
 | **`/ui-flow`** | Enforces Component-First sequence (checks `./app_theme.json`, Stage 1 -> Stage 3 -> Stage 4 -> Stage 5) and generates UI screen prompt blueprints. Ingests `docs/` for real copy. | **Dual-Engine Standard** (Google Stitch + ChatGPT) |
 | **`/app-icon`** | Generates 20-icon app logo exploration matrix prompt across 4 rows × 5 columns (1080x1080 \| 100% 2D vector). | **20-Icon Matrix Prompt (ChatGPT / Midjourney)** |
 | **`/app-screenshots`** | Generates 5 panoramic App Store marketing screenshots + 1 Next.js web storefront hero mockup screen (`shots.so` framing). | **Dual-Prompt Standard** (Variant A: Google Stitch Screenshot Spec + Variant B: ChatGPT / Midjourney) |
@@ -59,7 +59,7 @@ When running prompt compilation scripts, the script dynamically evaluates candid
 
 When compiling UI screens (`/ui-flow`), App Icons (`/app-icon`), or Storefront Screenshots (`/app-screenshots`), the agent **MUST INGEST** the authoritative documentation files using the primary and fallback paths defined above:
 - `PROJECT-BRIEF.md` (Product Identity, Mascot, Brand Personality, Copy & Vibe) (fallback: `APP-BRIEF.md`)
-- `ARCH-PRD.md` (Features, JTBD, Monorepo, Onboarding Carousel, Paywall, Permissions)
+- `SYSTEM-PRD.md` (Features, JTBD, Monorepo, Onboarding Carousel, Paywall, Permissions) (fallback: `ARCH-PRD.md`)
 - `app-features.md` (Feature-First Stack Decomposition)
 - `TECH-STACK.md` (Monorepo Infrastructure & DB Schemas)
 
@@ -108,7 +108,7 @@ When compiling UI screens (`/ui-flow`), App Icons (`/app-icon`), or Storefront S
 ## 📋 Interactive 2-Phase App Design Lifecycle Protocol
 
 ### Phase 4A: Look & Feel, Theme & Asset Audit (`/ui-theme`)
-1. Ingest `APP-BRIEF.md` and `ARCH-PRD.md`.
+1. Ingest `PROJECT-BRIEF.md` (or `APP-BRIEF.md`) and `SYSTEM-PRD.md` (or `ARCH-PRD.md`).
 2. Propose 2–3 curated **Color Palettes** with color psychology rationales.
 3. Propose 2–3 curated **Google Fonts Pairings** (Header + Body) with clickable specimen preview links (`https://fonts.google.com/specimen/...`).
 4. Perform **Asset Audit**: Proactively identify and list all required visual assets (mascots, custom SVG logos, hero illustrations) and request them from the developer if missing.

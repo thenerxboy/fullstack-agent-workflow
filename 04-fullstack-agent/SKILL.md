@@ -20,7 +20,7 @@ Agents MUST search for input context files and write output artifacts using this
 | :--- | :--- | :--- | :--- |
 | **Project Rules & Conventions** | `./AGENTS.md` | `docs/AGENTS.md` | `docs/00-workflow-guide/AGENTS.md` |
 | **Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
-| **System ARCH-PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
+| **System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
 | **App Features Map** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
 | **Tech Stack Spec (MANDATORY)** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 | **UI Design Memory** | `docs/04-ui-design/DESIGN-MEMORY.md` | `docs/DESIGN-MEMORY.md` | `./DESIGN-MEMORY.md` |
@@ -116,7 +116,7 @@ git push -u origin feature/<task-name>
 The agent—NOT the human—generates the project-level `./AGENTS.md` file by ingesting the completed project artifacts from earlier workflow stages.
 
 ### Execution Workflow for `/init-agents`:
-1. **Ingest Documentation**: Read `docs/01-project-brief/PROJECT-BRIEF.md` (fallback: `docs/01-app-brief/APP-BRIEF.md`), `docs/02-prd-research/ARCH-PRD.md`, `docs/03-tech-stack/TECH-STACK.md` & `app-features.md`, and `docs/04-ui-design/DESIGN-MEMORY.md`.
+1. **Ingest Documentation**: Read `docs/01-project-brief/PROJECT-BRIEF.md` (fallback: `docs/01-app-brief/APP-BRIEF.md`), `docs/02-prd-research/SYSTEM-PRD.md` (fallback: `docs/02-prd-research/ARCH-PRD.md`), `docs/03-tech-stack/TECH-STACK.md` & `app-features.md`, and `docs/04-ui-design/DESIGN-MEMORY.md`.
 2. **Extract Real Attributes**: Extract the app's real name, tagline, core features (In Scope), explicit out-of-scope defense list, monorepo package paths, database schemas, approved Google Fonts pairings, and locked stadium pill navbar specs.
 3. **GitHub Remote Verification Gate**: Check if workspace root has an active remote origin (`git remote get-url origin`). If NO remote is set up yet, guide the user using their locked real product name:
    > 🚀 **Phase 5 GitHub Remote Setup**:
@@ -343,11 +343,11 @@ Your job: understand the request, inspect relevant code, read docs/03-tech-stack
 7. **Informational Query vs. Execution Task Gate (Fast-Path Answer Mandate)**:
    - For simple informational or diagnostic questions (*"Can you access my emulator?"*, *"How does X work?"*): DO NOT launch planning mode, write implementation plans, or run heavy code loops. Immediately answer directly in concise text (1–2 paragraphs). Run a 1-liner status check (`adb devices`) ONLY if explicitly asked.
 8. **Architecture Decision Ingestion & 4 Universal Target Profiles Gate**:
-   - The workspace architecture model (Profile 1: Standalone Mobile, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+   - The workspace architecture model (Profile 1: Standalone Mobile, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`SYSTEM-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
    - **Non-Technical Chat Briefing**: Before scaffolding code, the agent MUST present a simple 3-part chat briefing explaining the target profile, free resources used (Vercel, Convex, Supabase, Clerk, Tailwind), and 1-liner run commands (`npm run dev` or `npx expo start`). Zero `AGENTS.md` bloat.
-   - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/ARCH-PRD.md` and `docs/03-tech-stack/TECH-STACK.md`**:
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
+   - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/SYSTEM-PRD.md` (or `ARCH-PRD.md`) and `docs/03-tech-stack/TECH-STACK.md`**:
+     * If `SYSTEM-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
+     * If `SYSTEM-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
      * If unspecified in `docs/`, the agent presents the Non-Technical Interactive Architecture Discovery Menu in chat to let the user pick their target profile.
 
 ## 2. Execution Workflow (Phase 5 Build)

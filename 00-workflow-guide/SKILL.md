@@ -82,11 +82,11 @@ When **`/start-workflow`** (or workspace setup) is initialized:
      c) **SINGLE-COMMAND CHECK (ONLY IF EXPLICITLY REQUESTED)**: If the user explicitly requests a status check (e.g. *"Check if my emulator is active right now"*), run **only a single 1-liner status command** (e.g. `adb devices` or `xcrun simctl list`) and return the output immediately.
 
 8. **Architecture Decision Ingestion & 4 Universal Target Profiles Gate**:
-   - The workspace architecture model (Profile 1: Standalone Mobile App, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`ARCH-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
+   - The workspace architecture model (Profile 1: Standalone Mobile App, Profile 2: Standalone Web App, Profile 3: Standalone Landing Page, Profile 4: Full-Stack Monorepo) is determined in **Phase 2 (`SYSTEM-PRD.md`)** and **Phase 3 (`TECH-STACK.md`)**.
    - **Non-Technical Chat Briefing**: Before scaffolding code, the agent MUST present a simple 3-part chat briefing explaining the target profile, free resources used (Vercel, Convex, Supabase, Clerk, Tailwind), and 1-liner run commands (`npm run dev` or `npx expo start`). Zero `AGENTS.md` bloat.
-   - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/ARCH-PRD.md` and `docs/03-tech-stack/TECH-STACK.md`**:
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
-     * If `ARCH-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
+   - Before scaffolding files or generating code in Phase 5 (`fullstack-agent`), the agent **MUST INSPECT `docs/02-prd-research/SYSTEM-PRD.md` (or `ARCH-PRD.md`) and `docs/03-tech-stack/TECH-STACK.md`**:
+     * If `SYSTEM-PRD.md` / `TECH-STACK.md` specifies a **Full-Stack Monorepo**, the agent builds inside `apps/` (`apps/native`, `apps/web`) and `packages/` (`packages/ui`, `packages/db`, `packages/auth`) with root script forwarding in `./package.json`.
+     * If `SYSTEM-PRD.md` / `TECH-STACK.md` specifies a **Standalone App** (Mobile, Web, or Landing Page), the agent builds flat directly in `./`.
      * If unspecified in `docs/`, the agent presents the Non-Technical Interactive Architecture Discovery Menu in chat to let the user pick their target profile.
 ```
 
@@ -108,7 +108,7 @@ Here is our 5-Phase Production Journey:
 
 3️⃣ **Phase 2: Product Strategy, ASO & System PRD Architecture** (`/prd`)
    - Executes an 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope.
-   - Outputs: `docs/02-prd-research/ARCH-PRD.md` & `aso_keywords.json`
+   - Outputs: `docs/02-prd-research/SYSTEM-PRD.md` (legacy fallback: `docs/02-prd-research/ARCH-PRD.md`) & `aso_keywords.json`
 
 4️⃣ **Phase 3: Monorepo Architecture & Feature-First Stack** (`tech-stack`)
    - Feature-first stack decomposition across 8 monorepo layers (Expo Router, Next.js, Convex/Supabase, Clerk).
@@ -131,7 +131,7 @@ Here is our 5-Phase Production Journey:
 
 - Type **`/project-idea`** (or `/app-idea`) to research 20 data-backed app ideas for a specific niche.
 - Type **`/project-brief`** (or `/app-brief`) if you already have a project idea and want to jam on the vibe, mascot, and brand identity!
-- Type **`/prd`** if you have `PROJECT-BRIEF.md` ready and want to build the System PRD.
+- Type **`/prd`** if you have `SYSTEM-PRD.md` (or `PROJECT-BRIEF.md`) ready and want to build the System PRD.
 - Type **`/ui-theme`** to lock color palettes, Google Fonts pairings, and visual asset requirements!
 - Type **`/ui-flow`** if your PRD is locked and you want to generate Generative UI prompt blueprints!
 - Type **`/init-agents`** if your design system and PRD are ready and you want to generate your tailored `./AGENTS.md` file!
@@ -152,7 +152,7 @@ Here is our 5-Phase Production Journey:
 | **`/prd-skill-shortcuts`** | `/prd-skill --shortcuts` | Shortcut list for `01-prd-skill`. |
 | **`/project-idea`** | `/app-idea`, `/idea` | Launches Phase 0 (20 App Ideas Pitch). |
 | **`/project-brief`** | `/app-brief`, `/brief`, `/vibe-brief` | Launches Phase 1 (Creative Vibe Brief & Brand Identity). |
-| **`/prd`** | N/A | Launches Phase 2 (System ARCH-PRD & ASO Keywords). |
+| **`/prd`** | N/A | Launches Phase 2 (System PRD & ASO Keywords). |
 | **`/tech-stack-help`** | `/tech-stack --help` | Displays help guide for `02-tech-stack` (Phase 3). |
 | **`/tech-stack-shortcuts`** | `/tech-stack --shortcuts` | Shortcut list for `02-tech-stack`. |
 | **`tech-stack`** | `/tech-stack` | Launches Phase 3 (Monorepo Infrastructure & DB Schemas). |

@@ -1,6 +1,6 @@
 # 🚀 Product Ideation & PRD Architecture Skill (`prd-skill`)
 
-Universal, agent-agnostic AI skill combining 20-idea market research, creative vibe brief drafting, product positioning, ASO keyword research, competitor audits, and 15-section system PRD architecture into `docs/01-project-brief/PROJECT-BRIEF.md` (fallback `APP-BRIEF.md`) and `docs/02-prd-research/ARCH-PRD.md`.
+Universal, agent-agnostic AI skill combining 20-idea market research, creative vibe brief drafting, product positioning, ASO keyword research, competitor audits, and 15-section system PRD architecture into `docs/01-project-brief/PROJECT-BRIEF.md` (fallback `APP-BRIEF.md`) and `docs/02-prd-research/SYSTEM-PRD.md` (fallback `ARCH-PRD.md`).
 
 ---
 
@@ -10,7 +10,7 @@ You can invoke `prd-skill` at any stage using these shortcut commands:
 
 - **`/project-idea`** *(aliases: `/app-idea`, `/idea`)*: Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches **20 data-backed project ideas**).
 - **`/project-brief`** *(aliases: `/app-brief`, `/brief`, `/vibe-brief`)*: Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and `PROJECT-BRIEF.md`).
-- **`/prd`**: Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes the 8-question discovery loop, locks V1 feature scope, and generates `ARCH-PRD.md`).
+- **`/prd`**: Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes the 8-question discovery loop, locks V1 feature scope, and generates `SYSTEM-PRD.md`).
 
 ---
 
@@ -27,7 +27,7 @@ You can invoke `prd-skill` at any stage using these shortcut commands:
 - **Phase 0 ──> Phase 1**: When you select a project concept in `/project-idea`, the agent automatically proposes launching `/project-brief`.
 - **Phase 1 ──> File Generation**: When creative jamming is complete, the agent proposes generating `docs/01-project-brief/PROJECT-BRIEF.md`.
 - **Phase 1 ──> Phase 2**: Upon approving `PROJECT-BRIEF.md`, the agent automatically proposes launching `/prd`.
-- **Phase 2 ──> File Generation**: When the 8-question discovery loop is complete, the agent proposes generating `docs/02-prd-research/ARCH-PRD.md`.
+- **Phase 2 ──> File Generation**: When the 8-question discovery loop is complete, the agent proposes generating `docs/02-prd-research/SYSTEM-PRD.md`.
 
 ---
 
@@ -41,19 +41,19 @@ git submodule add https://github.com/thenerxboy/fullstack-agent-workflow.git .ag
 
 #### Step 2: Invoke the Skill in your AI assistant
 ```markdown
-/app-idea
+/project-idea
 ```
-*Launches Phase 0 to research market trends and pitch 20 data-backed app ideas.*
+*Launches Phase 0 to research market trends and pitch 20 data-backed project ideas.*
 
 ```markdown
-/app-brief
+/project-brief
 ```
-*Launches Phase 1 to jam on brand identity, mascot voice, and create APP-BRIEF.md.*
+*Launches Phase 1 to jam on brand identity, mascot voice, and create PROJECT-BRIEF.md.*
 
 ```markdown
 /prd
 ```
-*Launches Phase 2 to execute the 8-question discovery loop and generate ARCH-PRD.md.*
+*Launches Phase 2 to execute the 8-question discovery loop and generate SYSTEM-PRD.md.*
 
 ---
 
