@@ -21,11 +21,11 @@ Agents MUST search for input context files and write output artifacts using this
 | **Project Rules & Conventions** | `./AGENTS.md` | `docs/AGENTS.md` | `docs/00-workflow-guide/AGENTS.md` |
 | **Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
 | **System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
-| **App Features Map** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
+| **Project Features Map** | `docs/03-tech-stack/project-features.md` | `docs/03-tech-stack/app-features.md` | `./project-features.md` |
 | **Tech Stack Spec (MANDATORY)** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 | **UI Design Memory** | `docs/04-ui-design/DESIGN-MEMORY.md` | `docs/DESIGN-MEMORY.md` | `./DESIGN-MEMORY.md` |
-| **Google Stitch Screen Prompts** | `docs/04-ui-design/app-screens/prompts/<screen_id>.md` | N/A (Strict Path) | N/A |
-| **UI Reference Screens** | `docs/04-ui-design/app-screens/<screen_id>.png` | N/A (Strict Path) | N/A |
+| **Google Stitch Screen Prompts** | `docs/04-ui-design/ui-screens/prompts/<screen_id>.md` | `docs/04-ui-design/app-screens/prompts/<screen_id>.md` | `ui-screens/prompts/<screen_id>.md` |
+| **UI Reference Screens** | `docs/04-ui-design/ui-screens/<screen_id>.png` | `docs/04-ui-design/app-screens/<screen_id>.png` | `ui-screens/<screen_id>.png` |
 | **AI Implementation Plans** | `prompts/<task_name>.md` | `docs/prompts/<task_name>.md` | `./prompts/<task_name>.md` |
 
 ---
@@ -38,7 +38,7 @@ Agents MUST search for input context files and write output artifacts using this
 | **`/fullstack-agent-shortcuts`** | `/fullstack-agent --shortcuts` | Fast cheat-sheet list of all Phase 5 trigger shortcuts. |
 | **`/init-agents`** | N/A | Ingests `docs/` (App Brief, PRD, Tech Stack, UI Design Memory) and generates a 100% project-tailored `./AGENTS.md` file at root. |
 | **`/vibe-loop <task>`** | `/build <task>`, `/code <task>`, `fullstack-agent build` | **Macro Build Loop**: Executes the 8-Step Vibe Engineering Feature Build Lifecycle (Plan ──> Review ──> Branch ──> Build ──> Visual Diff ──> PR). |
-| **`/diff-loop <screen_id>`** | `/visual-diff <screen_id>`, `/diff <screen_id>` | **Micro Visual Loop**: Executes Module 6 Visual AI Diff Screenshot Comparison Loop against `app-screens/<screen_id>.png` until 100% match. |
+| **`/diff-loop <screen_id>`** | `/visual-diff <screen_id>`, `/diff <screen_id>` | **Micro Visual Loop**: Executes Module 6 Visual AI Diff Screenshot Comparison Loop against `ui-screens/<screen_id>.png` (fallback `app-screens/<screen_id>.png`) until 100% match. |
 | **`fullstack-agent`** | `/code`, `/build`, `/plan` | Launches Phase 5 (Full-Stack Monorepo Code Generation & Feature Building on dedicated branch). |
 
 ---
@@ -47,7 +47,7 @@ Agents MUST search for input context files and write output artifacts using this
 
 To prevent any AI confusion when the user mentions "loop" or "loop feature":
 1. **Macro Build Loop (`/vibe-loop <task>`)**: Refers to the complete 8-step Vibe Engineering process (creating implementation plan `prompts/<task>.md`, feature branch `feature/<task>`, building code, visual verification, and PR review).
-2. **Micro Visual Verification Loop (`/diff-loop <screen_id>`)**: Refers strictly to Module 6 Visual AI Diff screenshot comparison (taking native `adb`/`xcrun` screenshot, comparing against `app-screens/<screen_id>.png`, and refining code until 100% match).
+2. **Micro Visual Verification Loop (`/diff-loop <screen_id>`)**: Refers strictly to Module 6 Visual AI Diff screenshot comparison (taking screenshot, comparing against `ui-screens/<screen_id>.png` or `app-screens/<screen_id>.png`, and refining code until 100% match).
 3. **Disambiguation Rule**: When asked about the "loop feature", the agent MUST state both loops clearly with their specific trigger commands (`/vibe-loop` vs `/diff-loop`) so the user can select their exact intent.
 
 ---
@@ -56,12 +56,12 @@ To prevent any AI confusion when the user mentions "loop" or "loop feature":
 
 To ensure the AI agent **NEVER ignores `TECH-STACK.md` or forgets it exists**:
 
-1. **Mandatory Ingestion Gate**: Before drafting ANY implementation plan in `prompts/<task-name>.md`, the agent **MUST ALWAYS read and inspect `docs/03-tech-stack/TECH-STACK.md` and `docs/03-tech-stack/app-features.md`**.
+1. **Mandatory Ingestion Gate**: Before drafting ANY implementation plan in `prompts/<task-name>.md`, the agent **MUST ALWAYS read and inspect `docs/03-tech-stack/TECH-STACK.md` and `docs/03-tech-stack/project-features.md` (or `app-features.md`)**.
 2. **Proof of Read in Implementation Plans**: In `prompts/<task-name>.md`, the agent MUST explicitly record:
    ```markdown
    ## 2. What It Read
    - [x] `docs/03-tech-stack/TECH-STACK.md` (Inspected Section X: Data Model & Package Rules)
-   - [x] `docs/03-tech-stack/app-features.md` (Inspected Feature Y Monorepo Mapping)
+   - [x] `docs/03-tech-stack/project-features.md` (Inspected Feature Y Monorepo Mapping)
    ```
    *If `docs/03-tech-stack/TECH-STACK.md` is missing from "What It Read", the user MUST reject the plan!*
 3. **Anti-Drift Tech Stack Constraint Line**:
@@ -116,7 +116,7 @@ git push -u origin feature/<task-name>
 The agent—NOT the human—generates the project-level `./AGENTS.md` file by ingesting the completed project artifacts from earlier workflow stages.
 
 ### Execution Workflow for `/init-agents`:
-1. **Ingest Documentation**: Read `docs/01-project-brief/PROJECT-BRIEF.md` (fallback: `docs/01-app-brief/APP-BRIEF.md`), `docs/02-prd-research/SYSTEM-PRD.md` (fallback: `docs/02-prd-research/ARCH-PRD.md`), `docs/03-tech-stack/TECH-STACK.md` & `app-features.md`, and `docs/04-ui-design/DESIGN-MEMORY.md`.
+1. **Ingest Documentation**: Read `docs/01-project-brief/PROJECT-BRIEF.md` (fallback: `docs/01-app-brief/APP-BRIEF.md`), `docs/02-prd-research/SYSTEM-PRD.md` (fallback: `docs/02-prd-research/ARCH-PRD.md`), `docs/03-tech-stack/TECH-STACK.md` & `project-features.md` (or `app-features.md`), and `docs/04-ui-design/DESIGN-MEMORY.md`.
 2. **Extract Real Attributes**: Extract the app's real name, tagline, core features (In Scope), explicit out-of-scope defense list, monorepo package paths, database schemas, approved Google Fonts pairings, and locked stadium pill navbar specs.
 3. **GitHub Remote Verification Gate**: Check if workspace root has an active remote origin (`git remote get-url origin`). If NO remote is set up yet, guide the user using their locked real product name:
    > 🚀 **Phase 5 GitHub Remote Setup**:
@@ -199,7 +199,7 @@ For EVERY feature or code generation task, the AI agent MUST execute this exact 
 4. **Human Review**: Hit pause and ask the user to review `prompts/<task-name>.md`.
 5. **Human Approval**: Wait for explicit user approval ("yes", "approved", "go ahead").
 6. **AI Build on Feature Branch**: Create feature branch (`git checkout -b feature/<name>`) and implement code.
-7. **Visual AI Diff Loop (Module 6)**: Capture simulator/browser screenshot, perform 10-point multimodal visual comparison against `docs/04-ui-design/app-screens/<screen_id>.png` (fallback `app-screens/<screen_id>.png`), and refine until 100% pixel-perfect.
+7. **Visual AI Diff Loop (Module 6)**: Capture simulator/browser screenshot, perform 10-point multimodal visual comparison against `docs/04-ui-design/ui-screens/<screen_id>.png` (fallback `docs/04-ui-design/app-screens/<screen_id>.png` or `ui-screens/<screen_id>.png`), and refine until 100% pixel-perfect.
 8. **CodeRabbit PR & Main Sync**: Run `tsc`/`lint`, push branch, review CodeRabbit feedback on PR, merge to `main`, and run `git checkout main && git pull origin main`.
 
 ---
@@ -230,7 +230,7 @@ For all UI components, screens, and layout changes, the agent MUST NOT ask *"Doe
    - **iOS Simulator Target**: Force simulator focus and app bundle reload before capture.
    - **Web Surface Target**: Trigger browser page reload on `http://localhost:3000` before running Playwright capture.
 3. **Step 3: Capture Fresh Screenshot**: Save fresh surface render to `docs/04-ui-design/verification/<screen_id>-actual.png`.
-4. **Step 4: 10-Point Visual Comparison**: Compare target `docs/04-ui-design/app-screens/<screen_id>.png` (fallback `app-screens/<screen_id>.png`) vs `docs/04-ui-design/verification/<screen_id>-actual.png`.
+4. **Step 4: 10-Point Visual Comparison**: Compare target `docs/04-ui-design/ui-screens/<screen_id>.png` (fallback `docs/04-ui-design/app-screens/<screen_id>.png`) vs `docs/04-ui-design/verification/<screen_id>-actual.png`.
 5. **Step 5: Visible Progress Status Output (NO SILENT LOOPS)**:
    - **STRICT MANDATE**: The agent MUST NOT run silent loops in the background. On EVERY iteration, emit a short, 1-line progress update:
      > 📸 **Visual Diff Iteration N**: Surface reloaded. Captured fresh screenshot. Score: **X% Match**. (Applying targeted fix to: [Element Name]).

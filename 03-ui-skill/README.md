@@ -18,15 +18,15 @@ You can invoke `ui-skill` in any AI assistant (Antigravity, Claude Code, Cursor,
 | :--- | :--- | :--- |
 | **`/ui-help`** | Displays complete manual overview, file schemas, workflow phases, CLI flags, and rules. | Summary Text |
 | **`/ui-shortcuts`** | Displays fast reference list of all available `/ui-*` shortcut triggers. | Summary Text |
-| **`/ui-theme`** | Ingests `PROJECT-BRIEF.md` (or `APP-BRIEF.md`) & `SYSTEM-PRD.md` (or `ARCH-PRD.md`), proposes 2–3 Color Palettes & Google Fonts pairings, audits visual assets (mascot/logo/SVGs), and locks `./app_theme.json`. | **Design System Token Lock** |
-| **`/ui-flow`** | Compiles UI screen prompt blueprints organized by user flow (Onboarding & Auth, Activation & Paywall, Main App Tabs, Happy Path Core Loop). Ingests `docs/` for real copy. | **Dual-Engine Standard** (Google Stitch + ChatGPT) |
+| **`/ui-theme`** | Ingests `PROJECT-BRIEF.md` (or `APP-BRIEF.md`) & `SYSTEM-PRD.md` (or `ARCH-PRD.md`), proposes 2–3 Color Palettes & Google Fonts pairings, audits visual assets (mascot/logo/SVGs), and locks `./project_theme.json` (fallback `./app_theme.json`). | **Design System Token Lock** |
+| **`/ui-flow`** | Compiles UI screen prompt blueprints organized by user flow (Onboarding & Auth, Activation & Paywall, Main App Tabs, Happy Path Core Loop). Ingests `docs/` for real copy. Supports Mobile 9:16 & Desktop 16:9 viewports. | **Dual-Engine Standard** (Google Stitch + ChatGPT) |
 | **`/app-icon`** | Generates 20-icon app logo exploration matrix prompt across 4 rows × 5 columns (1080x1080 \| 100% 2D vector). | **20-Icon Matrix Prompt (ChatGPT / Midjourney)** |
 | **`/app-screenshots`** | Generates 5 panoramic App Store marketing screenshots + 1 Next.js web storefront hero mockup screen (`shots.so` framing). | **Dual-Prompt Standard** (Variant A: Google Stitch Screenshot Spec + Variant B: ChatGPT / Midjourney) |
-| **`/ui-init`** | Auto-creates `app_theme.json`, project-local `design_catalog.json`, Base `AGENTS.md` Shell (if missing), `app-screens/` folder, and `docs/04-ui-design/DESIGN-MEMORY.md`. | Workspace Bootstrap |
+| **`/ui-init`** | Auto-creates `project_theme.json`, project-local `design_catalog.json`, Base `AGENTS.md` Shell (if missing), `ui-screens/` folder, and `docs/04-ui-design/DESIGN-MEMORY.md`. | Workspace Bootstrap |
 | **`/ui-extract`** | Extracts attached reference screenshot into color-agnostic JSON blueprint via `scripts/add_catalog_blueprint.js` and appends to local `design_catalog.json`. | Local Catalog JSON |
 | **`/ui-compile`** | Compiles a Google Stitch prompt for a specific screen from local `design_catalog.json` with domain adaptation (`node scripts/ui_formatter.js --app_domain`). | **Google Stitch Prompt Blueprint** |
-| **`/ui-sync`** | Batch compiles & updates ALL archived screen prompts in `app-screens/` to reflect global theme changes (`node scripts/ui_formatter.js --all`). | Formatter Sync |
-| **`/ui-approve`** | Saves current approved Google Stitch prompt into `app-screens/prompts/<screen_id>.md` and updates `docs/04-ui-design/DESIGN-MEMORY.md`. | Markdown File Archive |
+| **`/ui-sync`** | Batch compiles & updates ALL archived screen prompts in `ui-screens/` to reflect global theme changes (`node scripts/ui_formatter.js --all`). | Formatter Sync |
+| **`/ui-approve`** | Saves current approved Google Stitch prompt into `ui-screens/prompts/<screen_id>.md` and updates `docs/04-ui-design/DESIGN-MEMORY.md`. | Markdown File Archive |
 
 ---
 
@@ -45,10 +45,10 @@ You can invoke `ui-skill` in any AI assistant (Antigravity, Claude Code, Cursor,
    - Zero tolerance for placeholder strings ("Lorem Ipsum", "John Doe", "$99", "Sample User").
 6. **Dedicated UI Memory Log (`docs/04-ui-design/DESIGN-MEMORY.md`)**:
    - Tracks active screen versions (`home_v1.md`), active brand themes, approved Google Fonts pairings, locked stadium pill navbar specs, and registered SVG icons with **zero collisions** against main agent memory.
-7. **Central SVG Icon Registry (`app_theme.json.svg_registry`)**:
+7. **Central SVG Icon Registry (`project_theme.json.svg_registry`)**:
    - Single source of truth for raw mathematical SVG geometries (`<svg viewBox="..." ...><path d="..."/></svg>`).
-8. **Exclusive Google Stitch Screen Prompt Archiving Mandate (`docs/04-ui-design/app-screens/prompts/`)**:
-   - `docs/04-ui-design/app-screens/prompts/` (fallback `app-screens/prompts/`) is strictly reserved for Google Stitch screen prompt specs (`<screen_id>.md`) and rendered screenshots (`<screen_id>.png`). Image generation prompts output in chat are NEVER stored here.
+8. **Exclusive Google Stitch Screen Prompt Archiving Mandate (`docs/04-ui-design/ui-screens/prompts/`)**:
+   - `docs/04-ui-design/ui-screens/prompts/` (fallback `docs/04-ui-design/app-screens/prompts/`) is strictly reserved for Google Stitch screen prompt specs (`<screen_id>.md`) and rendered screenshots (`<screen_id>.png`). Image generation prompts output in chat are NEVER stored here.
 
 ---
 

@@ -90,13 +90,13 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
                                          ▼
 +-----------------------------------------------------------------------------------+
 | Phase 3: Monorepo Architecture & Feature-First Stack (tech-stack)                 |
-| Outputs: docs/03-tech-stack/app-features.md & TECH-STACK.md                       |
+| Outputs: docs/03-tech-stack/project-features.md & TECH-STACK.md                   |
 +-----------------------------------------------------------------------------------+
                                          │
                                          ▼
 +-----------------------------------------------------------------------------------+
 | Phase 4: Design Tokens, Generative UI Prompts, Dual App Icons (/ui-theme, /ui-flow)|
-| Outputs: docs/04-ui-design/app-screens/*.png, docs/04-ui-design/app-screens/prompts/, docs/04-ui-design/DESIGN-MEMORY |
+| Outputs: docs/04-ui-design/ui-screens/*.png, docs/04-ui-design/ui-screens/prompts/, docs/04-ui-design/DESIGN-MEMORY |
 +-----------------------------------------------------------------------------------+
                                          │
                                          ▼
@@ -123,8 +123,8 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
 | **Phase 1** | **`/project-brief`** *(alias: `/app-brief`)* | Creative vibe jamming for brand identity, mascot quirks, sensory personality, and copy tone. | `docs/01-project-brief/PROJECT-BRIEF.md` |
 | **Phase 2** | **`/prd`** | Executes 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope. | `docs/02-prd-research/SYSTEM-PRD.md` |
 | **Phase 3** | **`tech-stack`** | Feature-first stack decomposition across 8 Turborepo monorepo layers and DB client schemas. | `docs/03-tech-stack/TECH-STACK.md` |
-| **Phase 4** | **`/ui-theme`** | Ingests PRD & Project Brief, locks 2-3 color palettes and Google Fonts pairings, audits visual assets in `./app_theme.json`. | **Design System Token Lock** |
-| **Phase 4** | **`/ui-flow`** | Enforces Component-First sequence (`/ui-theme` token lock -> Stage 3 Auth -> Stage 4 Paywall -> Stage 5 Core Screens) and compiles UI screen prompt blueprints. | **Generative UI Screen Prompts** |
+| **Phase 4** | **`/ui-theme`** | Ingests PRD & Project Brief, locks 2-3 color palettes and Google Fonts pairings, audits visual assets in `./project_theme.json`. | **Design System Token Lock** |
+| **Phase 4** | **`/ui-flow`** | Enforces Component-First sequence (`/ui-theme` token lock -> Stage 3 Auth -> Stage 4 Paywall -> Stage 5 Core Screens) and compiles UI screen prompt blueprints. Supports Mobile 9:16 & Desktop 16:9 viewports. | **Generative UI Screen Prompts** |
 | **Phase 4** | **`/app-icon`** | Generates 20-icon app logo exploration matrix prompt across 4 rows × 5 columns (1080x1080 \| 100% 2D vector). | **20-Icon Matrix Prompt (ChatGPT / Midjourney)** |
 | **Phase 4** | **`/app-screenshots`** | Generates 5 panoramic App Store marketing screenshots + 1 Next.js web storefront hero screen. | **Dual-Prompt Standard** (Vector Spec + Midjourney) |
 | **Phase 5 (Setup)** | **`/init-agents`** | Ingests `docs/` and autonomously generates a 100% project-tailored `./AGENTS.md` file at the root. | Tailored `./AGENTS.md` |

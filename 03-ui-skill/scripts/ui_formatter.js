@@ -22,8 +22,11 @@ const candidateCatalogs = [
 const CATALOG_PATH = candidateCatalogs.find(p => fs.existsSync(p)) || candidateCatalogs[0];
 
 const candidateThemes = [
+  path.join(process.cwd(), 'project_theme.json'),
+  path.join(process.cwd(), 'project-theme.json'),
   path.join(process.cwd(), 'app_theme.json'),
   path.join(process.cwd(), 'app-theme.json'),
+  path.join(process.cwd(), 'docs', '04-ui-design', 'project_theme.json'),
   path.join(process.cwd(), 'docs', '04-ui-design', 'app_theme.json')
 ];
 
@@ -92,7 +95,7 @@ function applyAppThemeToSpec(specObj, colorTokens) {
   return result;
 }
 
-function generateUIPrompt(spec, themeConfig, activeThemeKey, appDomain) {
+function generateUIPrompt(spec, themeConfig, activeThemeKey, appDomain, surfaceType = 'mobile') {
   const profiles = themeConfig.theme_profiles || themeConfig.themes || DEFAULT_THEME_CONFIG.themes;
   const activeProfileKey = activeThemeKey || themeConfig.active_theme_profile || themeConfig.active_theme || Object.keys(profiles)[0] || 'default_theme';
   const activeTheme = profiles[activeProfileKey] || Object.values(profiles)[0] || DEFAULT_THEME_CONFIG.themes.default_theme;
@@ -113,41 +116,60 @@ function generateUIPrompt(spec, themeConfig, activeThemeKey, appDomain) {
     lockedNav = applyAppThemeToSpec(rawNav, colorTokens);
   }
 
+  const isWebSurface = surfaceType === 'website' || surfaceType === 'webapp' || surfaceType === 'landing';
   const effectiveNav = lockedNav || themeInjectedSpec.single_bottom_navigation_bar;
   const targetAppName = appDomain ? `${themeConfig.app_name} (${appDomain})` : themeConfig.app_name;
   const svgRegistry = themeConfig.svg_registry || {};
   const primaryBrandAccent = colorTokens.primary_brand_accent || colorTokens.primary_accent || '#00E5FF';
   const surfaceBackground = colorTokens.surface_background || '#090A0F';
 
+  const viewportTitle = isWebSurface
+    ? 'Desktop Web Interface (16:9 Widescreen Landscape - 1920x1080)'
+    : 'Mobile Smartphone App Screen (Vertical 9:16 Portrait)';
+
+  const canvasInstruction = isWebSurface
+    ? `Canvas Type: Desktop Web Interface (16:9 Widescreen Landscape - 1920x1080).
+Render a modern responsive desktop web browser view with top navigation header, hero section, multi-column content grid, and web footer. Do NOT compress into a narrow mobile phone container.`
+    : `Canvas Type: Mobile Phone App Screen (Narrow Vertical Portrait 9:16 aspect ratio).
+Do NOT render a widescreen desktop dashboard, web browser canvas, or wide tablet container. The generated UI canvas MUST be a standard narrow vertical smartphone app screen.`;
+
+  const navInstruction = isWebSurface
+    ? `[LOCKED WEB NAVIGATION & FOOTER STRUCTURE]
+Render a top sticky web navigation header bar (Logo left, Nav items center, CTAs right) and a multi-column web footer (Product links, Legal triad, Social icons, Copyright notice).`
+    : (effectiveNav ? `
+[LOCKED APP NAVIGATION SYSTEM - 100% CONSISTENT ON ALL APP SCREENS]
+IMPORTANT: This is the app's locked navigation bar. Render ONLY this single floating stadium pill navigation bar at the bottom of the screen. Do NOT append any default AI template navigation bar!
+${JSON.stringify(effectiveNav, null, 2)}
+` : '');
+
   return `=== GENERATIVE UI PROMPT SPECIFICATION ===
-Target Platform: Mobile Smartphone App Screen (Vertical 9:16 Portrait)
-Target App Name: ${targetAppName}
+Target Platform: ${viewportTitle}
+Target App/Project Name: ${targetAppName}
 Active Theme Profile: "${activeTheme.name || activeProfileKey}" (${activeProfileKey})
 Design Title: ${spec.title}${appDomain ? ` (Adapted to ${appDomain})` : ''}
-Target Viewport: Mobile Smartphone App Screen (Vertical 9:16 Portrait)
+Target Viewport: ${viewportTitle}
 Screen Category: ${spec.screen_type || spec.component_type}
 ${appDomain ? `
 [DOMAIN ADAPTATION DIRECTIVE - TARGET DOMAIN: "${appDomain}"]
 CRITICAL: Adapt all content placeholders, section titles, card labels, list items, and action buttons from the reference layout blueprint below to fit a "${appDomain}".
-1. Keep the EXACT visual structure, card containers, flex/grid layouts, component spacing, and locked bottom navigation bar.
+1. Keep the EXACT visual structure, card containers, flex/grid layouts, component spacing, and surface navigation.
 2. Translate all domain-specific text and placeholders into "${appDomain}" equivalents.
 ` : ''}
 [CRITICAL CANVAS ASPECT RATIO INSTRUCTION]
-Canvas Type: Mobile Phone App Screen (Narrow Vertical Portrait 9:16 aspect ratio).
-Do NOT render a widescreen desktop dashboard, web browser canvas, or wide tablet container. The generated UI canvas MUST be a standard narrow vertical smartphone app screen.
+${canvasInstruction}
 
 [GOAL & INSTRUCTIONS FOR GENERATIVE UI ENGINE]
-Generate a high-fidelity mobile app screen using the exact structural layout, component positions, and element scale below. Apply the specified app color palette and styling tokens into the design.
+Generate a high-fidelity UI layout using the exact structural layout, component positions, and element scale below. Apply the specified project color palette and styling tokens into the design.
 
 [EMBEDDED MATHEMATICAL SVG VECTOR ICON MANDATE]
 CRITICAL MANDATORY DIRECTIVE FOR ALL ICONS:
 - EVERY SINGLE ICON on this screen MUST BE DRAWN USING EXPLICIT MATHEMATICAL SVG PATH DATA (<svg width="..." height="..." viewBox="0 0 24 24"><path d="..."/></svg>).
 - Do NOT use emojis, text placeholders, or generic font names for icons under any circumstances!
 
-[PROJECT CENTRAL SVG REGISTRY (APP_THEME.JSON)]
+[PROJECT CENTRAL SVG REGISTRY (PROJECT_THEME.JSON / APP_THEME.JSON)]
 ${JSON.stringify(svgRegistry, null, 2)}
 
-[APP DESIGN SYSTEM COLOR PALETTE]
+[PROJECT DESIGN SYSTEM COLOR PALETTE]
 - Primary Brand Accent: ${primaryBrandAccent}
 - Primary Accent: ${colorTokens.primary_accent || colorTokens.primary_brand_accent || '#FF6D00'}
 - Primary Accent Hover: ${colorTokens.primary_accent_hover || '#059669'}
@@ -161,7 +183,7 @@ ${JSON.stringify(svgRegistry, null, 2)}
 - Muted Text: ${colorTokens.on_surface_muted || '#606575'}
 - Subtle Border / Outline: ${colorTokens.border_subtle || colorTokens.outline_subtle || 'rgba(255, 255, 255, 0.08)'}
 
-[EXACT LAYOUT & COMPONENT BLUEPRINT (WITH APPLIED APP THEME)]
+[EXACT LAYOUT & COMPONENT BLUEPRINT (WITH APPLIED PROJECT THEME)]
 Background Configuration:
 ${JSON.stringify(themeInjectedSpec.background, null, 2)}
 
@@ -170,20 +192,18 @@ ${JSON.stringify(themeInjectedSpec.layout_structure, null, 2)}
 
 Main Page Sections:
 ${JSON.stringify(themeInjectedSpec.sections || themeInjectedSpec.tabs || themeInjectedSpec, null, 2)}
-${effectiveNav ? `
-[LOCKED APP NAVIGATION SYSTEM - 100% CONSISTENT ON ALL APP SCREENS]
-IMPORTANT: This is the app's locked navigation bar. Render ONLY this single floating stadium pill navigation bar at the bottom of the screen. Do NOT append any default AI template navigation bar!
-${JSON.stringify(effectiveNav, null, 2)}
-` : ''}
+
+${navInstruction}
+
 [STRICT GENERATION CONSTRAINTS & ANTI-DUPLICATION RULES]
-1. MOBILE PORTRAIT CANVAS ONLY: Render a narrow vertical mobile smartphone app screen ONLY. Do NOT generate a widescreen desktop dashboard or wide web canvas.
+1. TARGET VIEWPORT CANVAS: Render ${viewportTitle} ONLY.
 2. ZERO ANIMATION RULE: Render static UI ONLY. Absolutely NO animations, NO motion graphics, NO dynamic keyframe loops, and NO pulsing or glowing movement. The output must be completely static.
 3. ZERO SHADOWS & ZERO GLOW RULE: Render flat UI surfaces ONLY. Absolutely NO drop-shadows, NO box-shadows, NO ambient glows, NO neon glow halos, and NO outer/inner glow effects. All cards, buttons, and containers must be completely flat with clean borders or solid color fills.
-4. LOCKED NAVIGATION BAR CONSISTENCY: Render EXACTLY ONE bottom navigation bar on the entire screen using the locked stadium pill spec above. Do NOT alter the navigation bar shape, tabs, or styling.
+4. NAVIGATION CONSISTENCY: ${isWebSurface ? 'Render a single top web header and multi-column web footer.' : 'Render EXACTLY ONE bottom navigation bar on the entire screen using the locked stadium pill spec above.'}
 5. SINGLE TOP HEADER RULE: Do NOT duplicate the top header bar.
-6. Reproduce the exact layout flex/grid structure, stacking order, element padding, and vertical positioning as specified in the blueprint above.
-7. Use the target app's exact color values provided above (${primaryBrandAccent} for primary elements, ${surfaceBackground} for main surface).
-8. Do NOT invent extra section cards or duplicate bottom tabs outside of the specified blueprint.
+6. Reproduce the exact layout flex/grid structure, stacking order, element padding, and positioning as specified in the blueprint above.
+7. Use the target project's exact color values provided above (${primaryBrandAccent} for primary elements, ${surfaceBackground} for main surface).
+8. Do NOT invent extra section cards or duplicate navigation elements outside of the specified blueprint.
 ============================================================`;
 }
 
@@ -204,9 +224,14 @@ function main() {
   const domainFlag = flags.find(f => f.startsWith('--app_domain=') || f.startsWith('--domain='));
   if (domainFlag) appDomain = domainFlag.split('=')[1].replace(/^["']|["']$/g, '');
 
+  let surfaceType = themeConfig.target_surface || 'mobile';
+  const surfaceFlag = flags.find(f => f.startsWith('--surface=') || f.startsWith('--target='));
+  if (surfaceFlag) surfaceType = surfaceFlag.split('=')[1].replace(/^["']|["']$/g, '');
+
   if (args.length < 2) {
     const activeProfile = profiles[activeThemeKey] || Object.values(profiles)[0] || {};
-    console.log(`\n🎨 Active App Theme: "${activeProfile.name || activeThemeKey}"`);
+    console.log(`\n🎨 Active Project Theme: "${activeProfile.name || activeThemeKey}"`);
+    console.log(`🌐 Target Surface Viewport: "${surfaceType}"`);
     console.log('\n📱 Available Screen Specs in Catalog:');
     for (const [cat, list] of Object.entries(catalog.screens)) {
       console.log(`\nCategory [${cat}]:`);
@@ -225,7 +250,7 @@ function main() {
     return;
   }
 
-  console.log(generateUIPrompt(targetSpec, themeConfig, activeThemeKey, appDomain));
+  console.log(generateUIPrompt(targetSpec, themeConfig, activeThemeKey, appDomain, surfaceType));
 }
 
 main();

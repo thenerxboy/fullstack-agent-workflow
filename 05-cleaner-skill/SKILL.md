@@ -31,8 +31,8 @@ The agent MUST NEVER suggest or delete files matching any of these patterns:
 - **Environment & Secret Files**: `.env`, `.env.local`, `.env.development`, `.env.production`
 - **Configuration Files**: `package.json`, `tsconfig.json`, `turbo.json`, `app.json`, `next.config.js`
 - **Authoritative Docs & Memory Files**: `docs/01-project-brief/`, `docs/01-app-brief/`, `docs/02-prd-research/`, `docs/03-tech-stack/`, `docs/04-ui-design/DESIGN-MEMORY.md`, `docs/05-external-skills/`, `MEMORY.md`, `./AGENTS.md`
-- **Active UI Assets**: `app-screens/prompts/*.md`, active `app-screens/*.png`
-- **Project Design Systems**: `app_theme.json`, `design_catalog.json`
+- **Active UI Assets**: `ui-screens/prompts/*.md`, active `ui-screens/*.png`, `app-screens/prompts/*.md`, active `app-screens/*.png`
+- **Project Design Systems**: `project_theme.json`, `app_theme.json`, `design_catalog.json`
 
 ---
 
@@ -41,7 +41,7 @@ The agent MUST NEVER suggest or delete files matching any of these patterns:
 | Category | File Target Description | Safe Clean Rationale |
 | :--- | :--- | :--- |
 | **Category 1: Old Verification Screenshots** | `docs/04-ui-design/verification/*-actual.png` | Temporary screenshots generated during past Visual AI Diff loops. Safe to remove once diff passes. |
-| **Category 2: Superseded Visual Drafts** | `app-screens/*_v1.png`, `app-screens/*_old.png` | Outdated layout screenshots superseded by current approved `.png` files. |
+| **Category 2: Superseded Visual Drafts** | `ui-screens/*_v1.png`, `ui-screens/*_old.png`, `app-screens/*_v1.png`, `app-screens/*_old.png` | Outdated layout screenshots superseded by current approved `.png` files. |
 | **Category 3: Temporary Build & Package Cache** | `.turbo/cache/*`, `node_modules/.cache/*`, `.expo/web-build/*` | Standard temporary build artifact bloat. Safely regenerated on next build. |
 | **Category 4: Dangling Scratch & Log Files** | `scratch/*`, `tmp/*`, `*.log` (excluding system logs) | Temporary debug output and one-off scripts created during troubleshooting. |
 

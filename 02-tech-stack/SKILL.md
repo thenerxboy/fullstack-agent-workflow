@@ -17,7 +17,7 @@ Agents MUST search for input context files and write output artifacts using this
 | :--- | :--- | :--- | :--- |
 | **Ingested Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
 | **Ingested System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
-| **Output Artifact 1 (Features)** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
+| **Output Artifact 1 (Features)** | `docs/03-tech-stack/project-features.md` | `docs/03-tech-stack/app-features.md` | `./project-features.md` |
 | **Output Artifact 2 (Tech Stack)** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 
 ---

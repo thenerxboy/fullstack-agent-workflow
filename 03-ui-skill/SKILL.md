@@ -20,12 +20,12 @@ Agents MUST search for input context files and write output artifacts using this
 | :--- | :--- | :--- | :--- |
 | **Ingested Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
 | **Ingested System PRD** | `docs/02-prd-research/SYSTEM-PRD.md` | `docs/02-prd-research/ARCH-PRD.md` | `./SYSTEM-PRD.md` |
-| **Ingested Features Map** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
+| **Ingested Features Map** | `docs/03-tech-stack/project-features.md` | `docs/03-tech-stack/app-features.md` | `./project-features.md` |
 | **Ingested Tech Stack** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
 | **UI Design Memory Log** | `docs/04-ui-design/DESIGN-MEMORY.md` | `docs/DESIGN-MEMORY.md` | `./DESIGN-MEMORY.md` |
-| **Approved Prompts Archive** | `docs/04-ui-design/app-screens/prompts/<screen_id>.md` | N/A (Strict Path) | N/A |
-| **UI Screenshots Archive** | `docs/04-ui-design/app-screens/<screen_id>.png` | N/A (Strict Path) | N/A |
-| **Theme & SVG Registry** | `./app-theme.json` | `./app_theme.json` | `resources/app_theme.json` |
+| **Approved Prompts Archive** | `docs/04-ui-design/ui-screens/prompts/<screen_id>.md` | `docs/04-ui-design/app-screens/prompts/<screen_id>.md` | `ui-screens/prompts/<screen_id>.md` |
+| **UI Screenshots Archive** | `docs/04-ui-design/ui-screens/<screen_id>.png` | `docs/04-ui-design/app-screens/<screen_id>.png` | `ui-screens/<screen_id>.png` |
+| **Theme & SVG Registry** | `./project_theme.json` | `./app_theme.json` | `resources/project_theme.json` |
 | **Project Design Catalog** | `./design_catalog.json` | `docs/04-ui-design/design_catalog.json` | `resources/design_catalog.json` |
 
 ### 🛠️ CLI Formatter Catalog Lookup Fallback Array (`scripts/ui_formatter.js`)
@@ -132,17 +132,23 @@ When compiling UI screens (`/ui-flow`), App Icons (`/app-icon`), or Storefront S
 ## 📐 Mandatory Design Rules & Guardrails
 
 1. **Color-Agnostic Catalog Rule**: NEVER hardcode HEX or RGB values inside `design_catalog.json`. Only use abstract semantic color roles (`primary_accent`, `surface_background`, `on_surface_high`, etc.).
-2. **Mobile Portrait Canvas Mandate (9:16 Aspect Ratio)**: Target `Mobile Smartphone App Screen (Vertical 9:16 Portrait)`.
+2. **Surface-Adaptive Canvas Mandate (Aspect Ratio & Viewport Resolution)**: Inspect active Target Surface Profile from `docs/` or prompt:
+   - **Mobile App Surface**: Target `Mobile Smartphone App Screen (Vertical 9:16 Portrait - 1080x1920)`.
+   - **Website / Landing Page Surface**: Target `Desktop Web Interface (16:9 Landscape - 1920x1080)` or `Responsive Web Viewport`.
+   - **SaaS / Web App Surface**: Target `Desktop Web Application Viewport (16:9 Landscape - 1920x1080)` with multi-panel grid layout.
 3. **Zero Shadows & Zero Glows Rule**: Flat UI surfaces ONLY. No drop-shadows, box-shadows, or ambient glows.
 4. **Zero Animations Rule**: 100% static UI renders. No motion graphics or dynamic loops.
-5. **Locked Single Navigation Bar Rule**: Render EXACTLY ONE bottom navigation bar using the locked stadium pill spec from `app_theme.json`.
+5. **Surface-Adaptive Navigation Structure Mandate**: Render target-matched navigation:
+   - **Mobile App**: Render EXACTLY ONE bottom stadium pill navigation bar using locked spec from `project_theme.json`.
+   - **Website / Landing Page**: Render a **Top Sticky Web Navigation Header Bar** (Logo Left, Nav Items Center, Action CTAs Right) and a **Multi-Column Web Footer** (`/privacy`, `/terms`, `/support`, socials).
+   - **Web App / SaaS**: Render a **Desktop Left Sidebar Navigation Rail** or **Top Application Header Bar** with command palette (`Cmd+K`) and user avatar dropdown.
 6. **Screen Correction & Dual Prompt Standard**: When revisions are requested, output (1) Follow-Up Revision Prompt, and (2) Full Standalone Prompt.
 7. **Auto-Generated Folder README Rule**: Automatically generate a self-documenting `README.md` when creating any new workspace folder.
 8. **Embedded SVG Vector Icon Rule**: Icons MUST be drawn using explicit mathematical SVG path data (`<svg viewBox="..." ...><path d="..."/></svg>`).
-9. **Central Project SVG Registry (`app_theme.json.svg_registry`)**: Register all mathematical SVG icon geometries in `app_theme.json.svg_registry`.
+9. **Central Project SVG Registry (`project_theme.json.svg_registry` / `app_theme.json.svg_registry`)**: Register all mathematical SVG icon geometries in `project_theme.json.svg_registry`.
 10. **Contextual Git Commit Protocol**: Ask for explicit user approval before executing `git commit` or `git push`.
 11. **Dedicated UI Design Memory Log Protocol (`docs/04-ui-design/DESIGN-MEMORY.md`)**: Track active screen versions, theme locks, and registered SVG icons in `docs/04-ui-design/DESIGN-MEMORY.md` (isolated from agent memory).
-12. **Exclusive Google Stitch Screen Prompt Archiving Mandate (`docs/04-ui-design/app-screens/prompts/`)**: The `docs/04-ui-design/app-screens/prompts/` directory (and fallback `app-screens/prompts/`) is STRICTLY RESERVED for **Google Stitch Standalone Screen Prompt specifications** (`<screen_id>.md`) compiled via `scripts/ui_formatter.js` and their rendered screenshot references (`<screen_id>.png`). **ABSOLUTE PROHIBITION**: Agents MUST NEVER store ChatGPT generation prompts, Midjourney prompts, App Icon matrix prompts (`/app-icon`), or App Store screenshot prompts (`/app-screenshots` Variant B) inside `app-screens/`. ChatGPT/Midjourney prompts generated for image tools are displayed directly in the chat UI and MUST NOT pollute `app-screens/`.
+12. **Exclusive Google Stitch Screen Prompt Archiving Mandate (`docs/04-ui-design/ui-screens/prompts/`)**: The `docs/04-ui-design/ui-screens/prompts/` directory (fallback `docs/04-ui-design/app-screens/prompts/`) is STRICTLY RESERVED for **Google Stitch Standalone Screen Prompt specifications** (`<screen_id>.md`) compiled via `scripts/ui_formatter.js` and their rendered screenshot references (`<screen_id>.png`). **ABSOLUTE PROHIBITION**: Agents MUST NEVER store ChatGPT generation prompts, Midjourney prompts, App Icon matrix prompts (`/app-icon`), or Storefront screenshot prompts (`/app-screenshots` Variant B) inside `ui-screens/` or `app-screens/`. ChatGPT/Midjourney prompts generated for image tools are displayed directly in the chat UI and MUST NOT pollute `ui-screens/`.
 13. **Lead Product Designer Persona & Unabridged ChatGPT Prompt Standard**: When generating prompts for ChatGPT, Midjourney, or DALL-E, the agent MUST adopt the Lead Product Designer & Design Systems Architect Persona. Prompts MUST ingest the active visual preset (`vibe_preset_01`, `vibe_preset_02`, `vibe_preset_03`), exact Hex tokens, spatial rules, display typography, hero card specs, live image background specs (e.g. live hero image backgrounds for auth/welcome in Preset 02), and real domain copy from `docs/`. Producing brief, generic, or truncated ChatGPT prompts is strictly prohibited.
 14. **Interactive Learning Clarification Protocol for Multi-Engine UI Requests**: When the user makes a broad UI request (e.g. *"Create UI for settlement screen"* or *"Design an icon"*), the agent MUST NOT guess or pick an engine blindly. It MUST present an **Interactive Learning Menu** displaying valid engines/tools (`/ui-compile` for Google Stitch spec vs `/ui-flow` for ChatGPT visual prompt vs `/ui-theme` for design tokens vs `/app-icon` for 20-icon matrix), explaining what each engine does, and showing the **EXACT shortcut command** formatted with the user's original request text.
 15. **Universal Proactive Executive Expert Mandate (UNRESTRICTED UI/UX Proactivity Across ALL Screens)**: NEVER act as a passive order-taker. The agent MUST proactively conduct live web searches (`search_web`) for current platform guidelines and audit/inject universal best practices, ergonomics, store compliance, zero-trust security, defensive error handling, accessibility standards, retention loops, and performance optimizations across ALL screens, components, and APIs — going beyond basic user prompts to deliver production-ready software.
@@ -540,6 +546,56 @@ Screenshot Narrative & Conversion Flow (8 Marketing Frames on a 1080x1080 Canvas
 
 Direction
 Design the showcase like a featured top-ranking App Store product page mockup. Seamlessly blend frames 1-2 and frames 5-6 while keeping all headlines, CTA buttons, and critical copy 100% sharp and unclipped within their respective frames. Ultra-high-resolution, perfectly aligned 8-frame grid, cohesive startup branding, and pixel-perfect iPhone presentation.
+```
+
+### 7. Desktop Web Landing Page Output Prompt Template (`/ui-flow --surface=website`)
+```text
+[PROJECT NAME] DESKTOP WEB LANDING PAGE UI PROMPT (16:9 LANDSCAPE CANVAS - 1920x1080)
+
+Generate an image of a modern, responsive, high-converting desktop web landing page UI presentation in 16:9 widescreen landscape aspect ratio for a project called "[PROJECT NAME]".
+[PROJECT NAME] is [1-sentence product description from PROJECT-BRIEF.md].
+
+Design Style & Viewport Architecture
+Viewport: Widescreen Desktop Browser Viewport (16:9 Landscape - 1920x1080)
+Modern 2026 SaaS & Web Marketing aesthetic (Stripe / Vercel / Linear inspired)
+Light/Dark mode aligned with project_theme.json
+Clean layout grid with wide horizontal margins, high contrast typography, and subtle ambient section dividers
+
+Color Palette & Typography
+[Inherited Palette and Typography tokens from project_theme.json]
+
+Page Layout & Sections (Full-Bleed Desktop Page Sequence)
+1. Top Sticky Web Navigation Header: Brand logo left, nav items ("Product", "Solutions", "Pricing", "Docs") center, "Log In" ghost button + "Get Started Free" primary filled CTA button right
+2. Hero Section: High-impact display headline (H1 56px–72px), punchy 2-line value subheadline, primary CTA button ("Start Free Trial →") + secondary demo CTA, and floating 16:9 interactive product screenshot / hero mock with subtle border glow
+3. Social Proof Banner: Customer logo cloud ("Trusted by 10,000+ teams at Stripe, Vercel, Supabase") + 5-star rating summary chip
+4. Feature Highlights Grid: 3-column interactive feature card grid with mathematical SVG vector icons, real domain microcopy, and code/telemetry previews
+5. Live Interactive Demo / Aha-Moment Section: Full-width interactive tool simulator showcasing real-time output transformation
+6. Pricing Comparison Table: Toggle for Monthly vs Annual (20% Off), 3 tier pricing cards (Free, Pro, Enterprise) with "Most Popular" badge highlight and feature checklist
+7. Testimonials & Authority: 2-column customer quote cards with avatar, title, and company badge
+8. Multi-Column Web Footer: Brand logo + tagline left, 4 link columns ("Product", "Company", "Resources", "Legal" — Privacy Policy, Terms of Service, Support), copyright notice, and social icon row
+```
+
+### 8. Web SaaS Application Dashboard Output Prompt Template (`/ui-flow --surface=webapp`)
+```text
+[PROJECT NAME] WEB SAAS APPLICATION DASHBOARD PROMPT (16:9 LANDSCAPE CANVAS - 1920x1080)
+
+Generate an image of a sleek, high-density desktop web application dashboard UI in 16:9 widescreen landscape aspect ratio for "[PROJECT NAME]".
+[PROJECT NAME] is [1-sentence product description from PROJECT-BRIEF.md].
+
+Design Style & Viewport Architecture
+Viewport: Widescreen Desktop Web Application (16:9 Landscape - 1920x1080)
+Modern SaaS / Developer Dashboard aesthetic (Linear / Vercel / Supabase inspired)
+Structured multi-panel desktop layout grid with compact cards and subtle 1px border outlines
+
+Color Palette & Typography
+[Inherited Palette and Typography tokens from project_theme.json]
+
+Layout & Component Architecture (Desktop Web App Layout)
+1. Left Navigation Sidebar Rail (Fixed 240px Width): Brand logo top, search command trigger pill ("Cmd+K"), primary nav menu items with mathematical SVG path icons, workspace switcher dropdown, bottom user profile pill
+2. Top Application Header Bar: Page title breadcrumbs ("Dashboard / Analytics"), quick filter dropdowns, notification bell icon, primary action CTA ("+ New Project")
+3. Metrics Summary Row: 4 key performance HUD cards with single-number metrics, percentage trend chips (+14.2% ↑), and micro sparkline charts
+4. Primary Interactive Content Panel: 2-column layout featuring main data chart / workflow grid on left (65% width) and recent activity stream / detail panel on right (35% width)
+5. Data Table / Resource Feed: Clean tabular data view with column sorting headers, status indicator pills (Active, Pending, Failed), action dropdown triggers, and pagination control
 ```
 ```
 
