@@ -30,7 +30,7 @@ The agent MUST NEVER suggest or delete files matching any of these patterns:
 - **Database & Schemas**: `packages/db/**/*`, `schema.ts`, `migrations/**/*`, `seed.ts`
 - **Environment & Secret Files**: `.env`, `.env.local`, `.env.development`, `.env.production`
 - **Configuration Files**: `package.json`, `tsconfig.json`, `turbo.json`, `app.json`, `next.config.js`
-- **Authoritative Docs & Memory Files**: `docs/01-app-brief/`, `docs/02-prd-research/`, `docs/03-tech-stack/`, `docs/04-ui-design/DESIGN-MEMORY.md`, `docs/05-external-skills/`, `MEMORY.md`, `./AGENTS.md`
+- **Authoritative Docs & Memory Files**: `docs/01-project-brief/`, `docs/01-app-brief/`, `docs/02-prd-research/`, `docs/03-tech-stack/`, `docs/04-ui-design/DESIGN-MEMORY.md`, `docs/05-external-skills/`, `MEMORY.md`, `./AGENTS.md`
 - **Active UI Assets**: `app-screens/prompts/*.md`, active `app-screens/*.png`
 - **Project Design Systems**: `app_theme.json`, `design_catalog.json`
 

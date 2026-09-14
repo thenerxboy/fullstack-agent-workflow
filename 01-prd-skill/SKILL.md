@@ -6,8 +6,8 @@ description: Universal AI agent skill for market research, 20-app-idea generatio
 # 🚀 Product Ideation & PRD Architecture Skill (`prd-skill`)
 
 Universal, agent-agnostic AI skill that guides developers through a complete 3-phase product creation journey:
-1. **Phase 0: Market Research & 20 App Ideas Pitch** (`/app-idea`)
-2. **Phase 1: Creative Vibe Jamming & Typography Selection** (`/app-brief`) ──> Outputs `docs/01-app-brief/APP-BRIEF.md`
+1. **Phase 0: Market Research & 20 Project Ideas Pitch** (`/project-idea` or `/app-idea`)
+2. **Phase 1: Creative Vibe Jamming & Brand Positioning** (`/project-brief` or `/app-brief`) ──> Outputs `docs/01-project-brief/PROJECT-BRIEF.md`
 3. **Phase 2: Product Strategy, ASO & System PRD Architecture** (`/prd`) ──> Outputs `docs/02-prd-research/ARCH-PRD.md` & `aso_keywords.json`
 
 ---
@@ -16,9 +16,9 @@ Universal, agent-agnostic AI skill that guides developers through a complete 3-p
 
 Agents MUST search for and output documents using this prioritized path resolution hierarchy:
 
-| Document / Asset | Primary Target Path | Fallback Path 1 | Fallback Path 2 |
+| Document / Asset | Primary Master Target Path | Fallback Path 1 (Legacy) | Fallback Path 2 |
 | :--- | :--- | :--- | :--- |
-| **App Brief** | `docs/01-app-brief/APP-BRIEF.md` | `docs/APP-BRIEF.md` | `./APP-BRIEF.md` |
+| **Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `./PROJECT-BRIEF.md` |
 | **System ARCH-PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
 | **ASO Keywords JSON** | `docs/02-prd-research/aso_keywords.json` | `docs/aso_keywords.json` | `./aso_keywords.json` |
 
@@ -26,13 +26,13 @@ Agents MUST search for and output documents using this prioritized path resoluti
 
 ## ⚡ Shortcut Commands & Help Triggers
 
-| Command / Shortcut | Alias Flag | Action / Behavior |
+| Command / Shortcut | Alias Flags | Action / Behavior |
 | :--- | :--- | :--- |
-| **`/prd-skill-help`** | `/prd-skill --help`, `/prd-help` | Displays complete manual & guide for Phase 0 (App Ideas), Phase 1 (Vibe Brief), and Phase 2 (ARCH-PRD). |
+| **`/prd-skill-help`** | `/prd-skill --help`, `/prd-help` | Displays complete manual & guide for Phase 0 (Ideas), Phase 1 (Project Brief), and Phase 2 (ARCH-PRD). |
 | **`/prd-skill-shortcuts`** | `/prd-skill --shortcuts` | Fast cheat-sheet list of all PRD skill shortcuts. |
-| **`/app-idea`** | N/A | Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches 20 data-backed app ideas). |
-| **`/app-brief`** | N/A | Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and `APP-BRIEF.md`). |
-| **`/prd`** | N/A | Launches **Phase 2** (Ingests `APP-BRIEF.md`, executes 8-question discovery loop, and generates `ARCH-PRD.md`). |
+| **`/project-idea`** | `/app-idea`, `/idea` | Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches 20 data-backed project ideas). |
+| **`/project-brief`** | `/app-brief`, `/brief`, `/vibe-brief` | Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and `PROJECT-BRIEF.md`). |
+| **`/prd`** | N/A | Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes 8-question discovery loop, and generates `ARCH-PRD.md`). |
 
 ---
 

@@ -18,7 +18,7 @@ Agents MUST search for input context files and write output artifacts using this
 
 | Document / Asset | Primary Target Path | Fallback Path 1 | Fallback Path 2 |
 | :--- | :--- | :--- | :--- |
-| **Ingested App Brief** | `docs/01-app-brief/APP-BRIEF.md` | `docs/APP-BRIEF.md` | `./APP-BRIEF.md` |
+| **Ingested Project Brief** | `docs/01-project-brief/PROJECT-BRIEF.md` | `docs/01-app-brief/APP-BRIEF.md` | `docs/PROJECT-BRIEF.md` |
 | **Ingested System PRD** | `docs/02-prd-research/ARCH-PRD.md` | `docs/ARCH-PRD.md` | `./ARCH-PRD.md` |
 | **Ingested Features Map** | `docs/03-tech-stack/app-features.md` | `docs/app-features.md` | `./app-features.md` |
 | **Ingested Tech Stack** | `docs/03-tech-stack/TECH-STACK.md` | `docs/TECH-STACK.md` | `./TECH-STACK.md` |
@@ -58,7 +58,7 @@ When running prompt compilation scripts, the script dynamically evaluates candid
 ## 📄 PRD Content Extraction Mandate (Zero Dummy Text Rule)
 
 When compiling UI screens (`/ui-flow`), App Icons (`/app-icon`), or Storefront Screenshots (`/app-screenshots`), the agent **MUST INGEST** the authoritative documentation files using the primary and fallback paths defined above:
-- `APP-BRIEF.md` (Product Identity, Mascot, Brand Personality, Copy & Vibe)
+- `PROJECT-BRIEF.md` (Product Identity, Mascot, Brand Personality, Copy & Vibe) (fallback: `APP-BRIEF.md`)
 - `ARCH-PRD.md` (Features, JTBD, Monorepo, Onboarding Carousel, Paywall, Permissions)
 - `app-features.md` (Feature-First Stack Decomposition)
 - `TECH-STACK.md` (Monorepo Infrastructure & DB Schemas)

@@ -99,12 +99,12 @@ When **`/start-workflow`** (or workspace setup) is initialized:
 
 Here is our 5-Phase Production Journey:
 
-1️⃣ **Phase 0: Market Research & 20 App Ideas Pitch** (`/app-idea`)
+1️⃣ **Phase 0: Market Research & 20 App Ideas Pitch** (`/project-idea`, `/app-idea`)
    - Researches micro-niches, competitor complaints, and search trends to pitch 20 data-backed app concepts.
 
-2️⃣ **Phase 1: Creative Vibe Jamming & Brand Identity** (`/app-brief`)
+2️⃣ **Phase 1: Creative Vibe Jamming & Brand Identity** (`/project-brief`, `/app-brief`)
    - Jams on identity, mascot, brand voice tone, copy personality, and target audience vibe.
-   - Outputs: `docs/01-app-brief/APP-BRIEF.md`
+   - Outputs: `docs/01-project-brief/PROJECT-BRIEF.md` (legacy fallback: `docs/01-app-brief/APP-BRIEF.md`)
 
 3️⃣ **Phase 2: Product Strategy, ASO & System PRD Architecture** (`/prd`)
    - Executes an 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope.
@@ -129,9 +129,9 @@ Here is our 5-Phase Production Journey:
 
 ### 🏁 Where would you like to start?
 
-- Type **`/app-idea`** to research 20 data-backed app ideas for a specific niche.
-- Type **`/app-brief`** if you already have an app idea and want to jam on the vibe, mascot, and brand identity!
-- Type **`/prd`** if you have `APP-BRIEF.md` ready and want to build the System PRD.
+- Type **`/project-idea`** (or `/app-idea`) to research 20 data-backed app ideas for a specific niche.
+- Type **`/project-brief`** (or `/app-brief`) if you already have a project idea and want to jam on the vibe, mascot, and brand identity!
+- Type **`/prd`** if you have `PROJECT-BRIEF.md` ready and want to build the System PRD.
 - Type **`/ui-theme`** to lock color palettes, Google Fonts pairings, and visual asset requirements!
 - Type **`/ui-flow`** if your PRD is locked and you want to generate Generative UI prompt blueprints!
 - Type **`/init-agents`** if your design system and PRD are ready and you want to generate your tailored `./AGENTS.md` file!
@@ -150,8 +150,8 @@ Here is our 5-Phase Production Journey:
 | **`/start-workflow`** | N/A | Runs Submodule Pre-Flight Audit Gate & interactive onboarding sitemap. |
 | **`/prd-skill-help`** | `/prd-skill --help`, `/prd-help` | Displays help guide for `01-prd-skill` (Phases 0, 1, 2). |
 | **`/prd-skill-shortcuts`** | `/prd-skill --shortcuts` | Shortcut list for `01-prd-skill`. |
-| **`/app-idea`** | N/A | Launches Phase 0 (20 App Ideas Pitch). |
-| **`/app-brief`** | N/A | Launches Phase 1 (Creative Vibe Brief & Brand Identity). |
+| **`/project-idea`** | `/app-idea`, `/idea` | Launches Phase 0 (20 App Ideas Pitch). |
+| **`/project-brief`** | `/app-brief`, `/brief`, `/vibe-brief` | Launches Phase 1 (Creative Vibe Brief & Brand Identity). |
 | **`/prd`** | N/A | Launches Phase 2 (System ARCH-PRD & ASO Keywords). |
 | **`/tech-stack-help`** | `/tech-stack --help` | Displays help guide for `02-tech-stack` (Phase 3). |
 | **`/tech-stack-shortcuts`** | `/tech-stack --shortcuts` | Shortcut list for `02-tech-stack`. |

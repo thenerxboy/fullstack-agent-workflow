@@ -72,13 +72,13 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
 
 ```
 +-----------------------------------------------------------------------------------+
-| Phase 0: Market Research & 20 App Ideas Pitch (/app-idea)                          |
+| Phase 0: Market Research & 20 App Ideas Pitch (/project-idea, /app-idea)          |
 +-----------------------------------------------------------------------------------+
                                          │
                                          ▼
 +-----------------------------------------------------------------------------------+
-| Phase 1: Creative Vibe Jamming & Brand Identity (/app-brief)                      |
-| Outputs: docs/01-app-brief/APP-BRIEF.md                                           |
+| Phase 1: Creative Vibe Jamming & Brand Identity (/project-brief, /app-brief)      |
+| Outputs: docs/01-project-brief/PROJECT-BRIEF.md                                  |
 +-----------------------------------------------------------------------------------+
                                          │
                                          ▼
@@ -119,11 +119,11 @@ Open your project in Antigravity, Claude Code, Cursor, or Windsurf and type:
 | **Universal Help** | **`/help`** *(alias: `/workflow-help`)* | Master Directory of ALL commands across all 5 skills. | Complete Help Menu |
 | **Universal Shortcuts** | **`/shortcuts`** | Fast cheat-sheet list of all skill shortcuts. | Shortcut Table |
 | **Onboarding** | **`/start-workflow`** | Runs Submodule Pre-Flight Audit Gate, Base `./AGENTS.md` Shell generator & interactive sitemap. | Interactive Guide |
-| **Phase 0** | **`/app-idea`** | Researches market trends, competitor gaps, YouTube transcripts, and pitches 20 data-backed app ideas. | 20 App Ideas Table |
-| **Phase 1** | **`/app-brief`** | Creative vibe jamming for brand identity, mascot quirks, sensory personality, and copy tone. | `docs/01-app-brief/APP-BRIEF.md` |
+| **Phase 0** | **`/project-idea`** *(alias: `/app-idea`)* | Researches market trends, competitor gaps, YouTube transcripts, and pitches 20 data-backed app ideas. | 20 App Ideas Table |
+| **Phase 1** | **`/project-brief`** *(alias: `/app-brief`)* | Creative vibe jamming for brand identity, mascot quirks, sensory personality, and copy tone. | `docs/01-project-brief/PROJECT-BRIEF.md` |
 | **Phase 2** | **`/prd`** | Executes 8-question discovery loop for ASO keywords, web surface models, compliance triad, and V1 scope. | `docs/02-prd-research/ARCH-PRD.md` |
 | **Phase 3** | **`tech-stack`** | Feature-first stack decomposition across 8 Turborepo monorepo layers and DB client schemas. | `docs/03-tech-stack/TECH-STACK.md` |
-| **Phase 4** | **`/ui-theme`** | Ingests PRD & App Brief, locks 2-3 color palettes and Google Fonts pairings, audits visual assets in `./app_theme.json`. | **Design System Token Lock** |
+| **Phase 4** | **`/ui-theme`** | Ingests PRD & Project Brief, locks 2-3 color palettes and Google Fonts pairings, audits visual assets in `./app_theme.json`. | **Design System Token Lock** |
 | **Phase 4** | **`/ui-flow`** | Enforces Component-First sequence (`/ui-theme` token lock -> Stage 3 Auth -> Stage 4 Paywall -> Stage 5 Core Screens) and compiles UI screen prompt blueprints. | **Generative UI Screen Prompts** |
 | **Phase 4** | **`/app-icon`** | Generates 20-icon app logo exploration matrix prompt across 4 rows × 5 columns (1080x1080 \| 100% 2D vector). | **20-Icon Matrix Prompt (ChatGPT / Midjourney)** |
 | **Phase 4** | **`/app-screenshots`** | Generates 5 panoramic App Store marketing screenshots + 1 Next.js web storefront hero screen. | **Dual-Prompt Standard** (Vector Spec + Midjourney) |

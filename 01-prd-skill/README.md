@@ -1,6 +1,6 @@
 # 🚀 Product Ideation & PRD Architecture Skill (`prd-skill`)
 
-Universal, agent-agnostic AI skill combining 20-app-idea market research, creative vibe brief drafting, product positioning, ASO keyword research, competitor audits, and 15-section system PRD architecture into `docs/01-app-brief/APP-BRIEF.md` and `docs/02-prd-research/ARCH-PRD.md`.
+Universal, agent-agnostic AI skill combining 20-idea market research, creative vibe brief drafting, product positioning, ASO keyword research, competitor audits, and 15-section system PRD architecture into `docs/01-project-brief/PROJECT-BRIEF.md` (fallback `APP-BRIEF.md`) and `docs/02-prd-research/ARCH-PRD.md`.
 
 ---
 
@@ -8,9 +8,9 @@ Universal, agent-agnostic AI skill combining 20-app-idea market research, creati
 
 You can invoke `prd-skill` at any stage using these shortcut commands:
 
-- **`/app-idea`**: Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches **20 data-backed app ideas**).
-- **`/app-brief`**: Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and 20-section `APP-BRIEF.md`).
-- **`/prd`**: Launches **Phase 2** (Ingests `APP-BRIEF.md`, executes the 8-question discovery loop, locks V1 feature scope, and generates `ARCH-PRD.md`).
+- **`/project-idea`** *(aliases: `/app-idea`, `/idea`)*: Launches **Phase 0** (Researches market trends, YouTube resources, competitor gaps, and pitches **20 data-backed project ideas**).
+- **`/project-brief`** *(aliases: `/app-brief`, `/brief`, `/vibe-brief`)*: Launches **Phase 1** (Creative Vibe Jamming for brand identity, mascot quirks, sensory personality, copy tone, and `PROJECT-BRIEF.md`).
+- **`/prd`**: Launches **Phase 2** (Ingests `PROJECT-BRIEF.md` or `APP-BRIEF.md`, executes the 8-question discovery loop, locks V1 feature scope, and generates `ARCH-PRD.md`).
 
 ---
 
@@ -24,9 +24,9 @@ You can invoke `prd-skill` at any stage using these shortcut commands:
 ---
 
 ## 🔄 Sequential Phase Progression & File Proposals
-- **Phase 0 ──> Phase 1**: When you select an app concept in `/app-idea`, the agent automatically proposes launching `/app-brief`.
-- **Phase 1 ──> File Generation**: When creative jamming is complete, the agent proposes generating `docs/01-app-brief/APP-BRIEF.md`.
-- **Phase 1 ──> Phase 2**: Upon approving `APP-BRIEF.md`, the agent automatically proposes launching `/prd`.
+- **Phase 0 ──> Phase 1**: When you select a project concept in `/project-idea`, the agent automatically proposes launching `/project-brief`.
+- **Phase 1 ──> File Generation**: When creative jamming is complete, the agent proposes generating `docs/01-project-brief/PROJECT-BRIEF.md`.
+- **Phase 1 ──> Phase 2**: Upon approving `PROJECT-BRIEF.md`, the agent automatically proposes launching `/prd`.
 - **Phase 2 ──> File Generation**: When the 8-question discovery loop is complete, the agent proposes generating `docs/02-prd-research/ARCH-PRD.md`.
 
 ---
